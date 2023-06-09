@@ -1,6 +1,5 @@
-from django.shortcuts import get_object_or_404
 from rest_framework import status
-from rest_framework.generics import RetrieveUpdateDestroyAPIView
+from rest_framework.generics import RetrieveUpdateDestroyAPIView, get_object_or_404
 from rest_framework.response import Response
 
 from client.models import Client
@@ -16,10 +15,8 @@ class ClientViewSet(RetrieveUpdateDestroyAPIView):
         elif self.request.method in ['PUT', 'PATCH']:
             return ClientCreationSerializer
 
-
     def get_object(self):
         client_id = self.kwargs.get('client_id')
-
         return get_object_or_404(self.get_queryset(), id=client_id)
 
     def patch(self, request, *args, **kwargs):
@@ -35,12 +32,8 @@ class ClientViewSet(RetrieveUpdateDestroyAPIView):
 
         return Response(self.get_serializer(instance).data, status=status.HTTP_200_OK)
 
-
     def delete(self, request, *args, **kwargs):
         client = self.get_object()
         Client.delete(client)
 
         return Response(self.get_serializer(client).data, status=status.HTTP_200_OK)
-
-
-

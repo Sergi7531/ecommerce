@@ -1,0 +1,58 @@
+[
+  {
+    "model": "selling.Tag",
+    "fields": {
+      "name": "Nike Streetwear",
+      "relevance": 85
+    }
+  },
+  {
+    "model": "selling.Tag",
+    "fields": {
+      "name": "Nike Sport",
+      "relevance": 60
+    }
+  },
+  {
+    "model": "selling.Tag",
+    "fields": {
+      "name": "Originals by Adidas",
+      "relevance": 80
+    }
+  },
+  {
+    "model": "selling.Tag",
+    "fields": {
+      "name": "Streetwear",
+      "relevance": 95
+    }
+  },
+  {
+    "model": "selling.Tag",
+    "fields": {
+      "name": "Sportswear",
+      "relevance": 85
+    }
+  },
+  {
+    "model": "selling.Tag",
+    "fields": {
+      "name": "Man",
+      "relevance": 100
+    }
+  },
+  {
+    "model": "selling.Tag",
+    "fields": {
+      "name": "Women",
+      "relevance": 100
+    }
+  },
+  {
+    "model": "selling.Tag",
+    "fields": {
+      "name": "Unisex",
+      "relevance": 100
+    }
+  }
+]

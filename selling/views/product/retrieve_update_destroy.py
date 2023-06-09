@@ -9,7 +9,7 @@ from selling.serializers.product import ProductSerializer, ProductUpdateSerializ
 
 
 class ProductViewSet(RetrieveUpdateDestroyAPIView):
-    queryset = Product.all_objects.all()
+    queryset = Product.objects.all()
 
     def get_serializer_class(self):
         if self.request.method in ['GET', 'DELETE']:
@@ -33,10 +33,10 @@ class ProductViewSet(RetrieveUpdateDestroyAPIView):
         serializer.is_valid(raise_exception=True)
         self.perform_update(serializer)
 
-        return Response(self.serializer_class(instance).data, status=status.HTTP_200_OK)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
     def delete(self, request, *args, **kwargs):
         product = self.get_object()
         Product.delete(product)
 
-        return Response(self.serializer_class(product).data, status=status.HTTP_200_OK)
+        return Response(self.get_serializer(product).data, status=status.HTTP_200_OK)

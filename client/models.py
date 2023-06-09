@@ -8,19 +8,16 @@ from common.models import SoftDeletionModel
 
 
 class Client(AbstractBaseUser, SoftDeletionModel):
-    # id = models.UUIDField(primary_key=True, default=uuid4, editable=False)
     username = models.CharField(max_length=30, default=None, null=True)
     first_name = models.CharField(max_length=30, default=None, null=True)
     last_name = models.CharField(max_length=30, default=None, null=True)
     email = models.EmailField(max_length=190, null=False, blank=False, unique=True)
+    # client = models.ForeignKey('selling.models.ShoppingCart', related_name='cart_client', on_delete=models.CASCADE)
 
     is_staff = models.BooleanField(default=False)
     system_user = models.BooleanField(default=False)
 
     is_deleted = models.BooleanField(default=False)
-    # updated_at = models.DateTimeField(auto_now=True)
-    # created_at = models.DateTimeField(auto_now_add=True)
-    # deleted_at = models.DateTimeField(auto_now_add=True)
 
     objects = SoftDeletionManager()
     all_objects = SoftDeletionManager(alive_only=False)
