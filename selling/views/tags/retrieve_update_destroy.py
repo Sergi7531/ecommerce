@@ -15,6 +15,12 @@ class TagViewSet(RetrieveUpdateDestroyAPIView):
         elif self.request.method in ['PUT', 'PATCH']:
             return TagCreationSerializer
 
+    def get_output_serializer(self):
+        if self.request.method == 'DELETE':
+            return TagCreationSerializer
+        else:
+            return TagSerializer
+
     def get_object(self):
         tag_id = self.kwargs.get('tag_id')
         return get_object_or_404(self.get_queryset(), id=tag_id)
@@ -36,4 +42,4 @@ class TagViewSet(RetrieveUpdateDestroyAPIView):
         tag = self.get_object()
         Tag.delete(tag)
 
-        return Response(self.get_serializer(tag).data, status=status.HTTP_200_OK)
+        return Response(self.get_output_serializer()(tag).data, status=status.HTTP_200_OK)

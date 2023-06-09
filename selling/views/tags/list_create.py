@@ -1,10 +1,13 @@
+from rest_framework import status
 from rest_framework.generics import ListCreateAPIView
+from rest_framework.response import Response
 
 from selling.models import Tag
-from selling.serializers.tags import TagsSerializer, TagCreationSerializer
+from selling.serializers.tags import TagsSerializer, TagCreationSerializer, TagSerializer
 
 
 class TagsViewSet(ListCreateAPIView):
+    output_serializer_class = TagSerializer
     queryset = Tag.objects.all()
 
     def get_serializer_class(self):
@@ -12,3 +15,11 @@ class TagsViewSet(ListCreateAPIView):
             return TagsSerializer
         elif self.request.method == 'POST':
             return TagCreationSerializer
+
+
+    def post(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        product = serializer.save()
+
+        return Response(self.output_serializer_class(product).data, status=status.HTTP_201_CREATED)

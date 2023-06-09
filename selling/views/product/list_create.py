@@ -1,12 +1,14 @@
 from django.db.models import Q
+from rest_framework import status
 from rest_framework.generics import ListCreateAPIView
+from rest_framework.response import Response
 
 from selling.models import Product
-from selling.serializers.product import ProductsSerializer, ProductCreationSerializer, ProductsQueryParamsSerializer
+from selling.serializers.product import ProductsSerializer, ProductCreationSerializer, ProductsQueryParamsSerializer, \
+    ProductSerializer
 
 
 class ProductsViewSet(ListCreateAPIView):
-    output_serializer_class = ProductCreationSerializer
 
     def get_serializer_class(self):
         if self.request.method == 'GET':
@@ -36,9 +38,9 @@ class ProductsViewSet(ListCreateAPIView):
 
         return Product.objects.filter(filter_params)
 
-    # def post(self, request, *args, **kwargs):
-    #     serializer = self.get_serializer(data=request.data)
-    #     serializer.is_valid(raise_exception=True)
-    #     product = serializer.save()
-    #
-    #     return Response(ProductSerializer(product).data, status=status.HTTP_201_CREATED)
+    def post(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        product = serializer.save()
+
+        return Response(ProductSerializer(product).data, status=status.HTTP_201_CREATED)
