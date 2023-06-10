@@ -1,0 +1,48 @@
+version: '3'
+services:
+  ecommerce_api:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile-api-local
+    container_name: "ecommerce_api_local"
+    ports:
+      - "8000:8000"
+    environment:
+      - DB_HOST=db
+      - DB_NAME=ecommerce
+      - DB_USER=ecommerce_user
+      - DB_PWD=ecommerce_password
+    volumes:
+      - ../api:/code
+      - ../resources:/code/resources
+    links:
+      - db
+    depends_on:
+      - db
+    command:
+      ../entrypoint-local.sh
+
+#  db:
+#    platform: linux/x86_64
+#    image: mysql:5.7
+#    ports:
+#      - 3306:3306
+#    environment:
+#      MYSQL_DATABASE: ecommerce
+#      MYSQL_ROOT_PASSWORD: root
+#    volumes:
+#      - ./mysql-data:/var/lib/mysql
+
+  db:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile-mysql-local
+    volumes:
+      - "./docker_mysql/.data/db:/var/lib/mysql"
+      - "./docker_mysql/base_schema.sql:/docker-entrypoint-initdb.d/00-base_schema.sql"
+    environment:
+      MYSQL_ROOT_PASSWORD: "ecommerce_root_password"
+      MYSQL_USER: "ecommerce_user"
+      MYSQL_PASSWORD: "ecommerce_password"
+    ports:
+      - "3306:3306"

@@ -1,0 +1,12 @@
+FROM python:3.7-buster
+
+ENV PYTHONUNBUFFERED 1
+RUN apt-get clean && apt-get -y update && apt-get install -y locales
+RUN mkdir /code
+ADD ./requirements /requirements/
+RUN pip install -r requirements/requirements.txt
+
+# STEP 2 - PROJECT
+ADD ./api /code/
+COPY ./entrypoint-local.sh /
+WORKDIR /code
