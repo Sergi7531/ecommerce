@@ -1,4 +1,4 @@
-from api.settings.base import *
+from .settings import *
 
 DEBUG = False
 
