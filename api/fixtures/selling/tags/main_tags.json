@@ -1,48 +1,15 @@
 [
   {
     "model": "selling.Tag",
+    "pk": 1,
     "fields": {
-      "name": "Nike Streetwear",
-      "relevance": 85
-    }
-  },
-  {
-    "model": "selling.Tag",
-    "fields": {
-      "name": "Nike Sport",
-      "relevance": 60
-    }
-  },
-  {
-    "model": "selling.Tag",
-    "fields": {
-      "name": "Originals by Adidas",
-      "relevance": 80
-    }
-  },
-  {
-    "model": "selling.Tag",
-    "fields": {
-      "name": "Streetwear",
-      "relevance": 95
-    }
-  },
-  {
-    "model": "selling.Tag",
-    "fields": {
-      "name": "Sportswear",
-      "relevance": 85
-    }
-  },
-  {
-    "model": "selling.Tag",
-    "fields": {
-      "name": "Man",
+      "name": "Men",
       "relevance": 100
     }
   },
   {
     "model": "selling.Tag",
+    "pk": 2,
     "fields": {
       "name": "Women",
       "relevance": 100
@@ -50,8 +17,49 @@
   },
   {
     "model": "selling.Tag",
+    "pk": 3,
     "fields": {
       "name": "Unisex",
+      "relevance": 100
+    }
+  },
+  {
+    "model": "selling.Tag",
+    "pk": 4,
+    "fields": {
+      "name": "Tops",
+      "relevance": 100
+    }
+  },
+  {
+    "model": "selling.Tag",
+    "pk": 5,
+    "fields": {
+      "name": "Bottoms",
+      "relevance": 100
+    }
+  },
+  {
+    "model": "selling.Tag",
+    "pk": 6,
+    "fields": {
+      "name": "Underwear",
+      "relevance": 100
+    }
+  },
+  {
+    "model": "selling.Tag",
+    "pk": 7,
+    "fields": {
+      "name": "Shoes",
+      "relevance": 100
+    }
+  },
+  {
+    "model": "selling.Tag",
+    "pk": 8,
+    "fields": {
+      "name": "Accessories",
       "relevance": 100
     }
   }

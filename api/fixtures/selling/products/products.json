@@ -5,7 +5,7 @@
       "created_at": "2023-06-05T09:57:49.461Z",
       "updated_at": "2023-06-05T09:57:49.461Z",
       "deleted_at": null,
-      "name": "Nike cap",
+      "name": "Nike basic logo cap",
       "description": "Basic nike cap. One-sized. Simple",
       "price": 1999,
       "stock": 20,
@@ -22,20 +22,6 @@
       "name": "Nike Air Force 1 Low Retro",
       "description": "Here since the 80s",
       "price": 10999,
-      "stock": 20,
-      "published": false,
-      "tags": []
-    }
-  },
-  {
-    "model": "selling.Product",
-    "fields": {
-      "created_at": "2023-06-05T09:57:28.544Z",
-      "updated_at": "2023-06-05T09:57:28.544Z",
-      "deleted_at": null,
-      "name": "Nike cap",
-      "description": "",
-      "price": 1999,
       "stock": 20,
       "published": false,
       "tags": []

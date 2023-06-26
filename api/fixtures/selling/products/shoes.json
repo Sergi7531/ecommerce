@@ -9,7 +9,7 @@
       "price": 10999,
       "description": "Here since the 80s",
       "stock": 50,
-      "tags": []
+      "tags": [1,4,11]
     }
   },
   {

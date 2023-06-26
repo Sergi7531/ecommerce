@@ -1,0 +1,123 @@
+[
+  {
+    "model": "selling.Tag",
+    "pk": 11,
+    "fields": {
+      "name": "Nike",
+      "relevance": 70,
+      "related_tags": [
+        3
+      ]
+    }
+  },
+  {
+    "model": "selling.Tag",
+    "pk": 12,
+    "fields": {
+      "name": "Nike sportswear",
+      "relevance": 50,
+      "related_tags": [
+        3,
+        4,
+        5,
+        7,
+        8,
+        11
+      ]
+    }
+  },
+  {
+    "model": "selling.Tag",
+    "pk": 13,
+    "fields": {
+      "name": "Jordan",
+      "relevance": 65,
+      "related_tags": [
+        3,
+        4,
+        5,
+        7,
+        8,
+        11
+      ]
+    }
+  },
+  {
+    "model": "selling.Tag",
+    "pk": 14,
+    "fields": {
+      "name": "Nike Football",
+      "relevance": 50,
+      "related_tags": [
+        3,
+        4
+      ]
+    }
+  },
+  {
+    "model": "selling.Tag",
+    "pk": 15,
+    "fields": {
+      "name": "Adidas Golf",
+      "relevance": 30,
+      "related_tags": [
+        5
+      ]
+    }
+  },
+  {
+    "model": "selling.Tag",
+    "pk": 16,
+    "fields": {
+      "name": "Adidas Originals",
+      "relevance": 70,
+      "related_tags": [
+        5
+      ]
+    }
+  },
+  {
+    "model": "selling.Tag",
+    "pk": 17,
+    "fields": {
+      "name": "Adidas performance",
+      "relevance": 45,
+      "related_tags": [
+        5
+      ]
+    }
+  },
+  {
+    "model": "selling.Tag",
+    "pk": 18,
+    "fields": {
+      "name": "Adidas skateboarding",
+      "relevance": 20,
+      "related_tags": [
+        5
+      ]
+    }
+  },
+  {
+    "model": "selling.Tag",
+    "pk": 19,
+    "fields": {
+      "name": "Calvin Klein Jeans",
+      "relevance": 70,
+      "related_tags": [
+        6
+      ]
+    }
+  },
+  {
+    "model": "selling.Tag",
+    "pk": 20,
+    "fields": {
+      "name": "Tommy Jeans",
+      "relevance": 55,
+      "related_tags": [
+        9
+      ]
+    }
+  }
+]
