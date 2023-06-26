@@ -6,7 +6,7 @@
       "name": "Nike",
       "relevance": 70,
       "related_tags": [
-        4
+        3
       ]
     }
   },
@@ -17,7 +17,12 @@
       "name": "Nike sportswear",
       "relevance": 50,
       "related_tags": [
-        4
+        3,
+        4,
+        5,
+        7,
+        8,
+        11
       ]
     }
   },
@@ -28,7 +33,12 @@
       "name": "Jordan",
       "relevance": 65,
       "related_tags": [
-        4
+        3,
+        4,
+        5,
+        7,
+        8,
+        11
       ]
     }
   },
@@ -39,6 +49,7 @@
       "name": "Nike Football",
       "relevance": 50,
       "related_tags": [
+        3,
         4
       ]
     }
@@ -98,7 +109,7 @@
       ]
     }
   },
-    {
+  {
     "model": "selling.Tag",
     "pk": 20,
     "fields": {

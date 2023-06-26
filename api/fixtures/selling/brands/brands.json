@@ -1,0 +1,51 @@
+[
+  {
+    "model": "selling.Brand",
+    "pk": 1,
+    "fields": {
+      "name": "Nike"
+    }
+  },
+  {
+    "model": "selling.Brand",
+    "pk": 2,
+    "fields": {
+      "name": "Adidas"
+    }
+  },
+  {
+    "model": "selling.Brand",
+    "pk": 3,
+    "fields": {
+      "name": "Calvin Klein"
+    }
+  },
+  {
+    "model": "selling.Brand",
+    "pk": 4,
+    "fields": {
+      "name": "The North Face"
+    }
+  },
+  {
+    "model": "selling.Brand",
+    "pk": 5,
+    "fields": {
+      "name": "Puma"
+    }
+  },
+  {
+    "model": "selling.Brand",
+    "pk": 6,
+    "fields": {
+      "name": "Tommy Hilfiger"
+    }
+  },
+  {
+    "model": "selling.Brand",
+    "pk": 7,
+    "fields": {
+      "name": "Vans"
+    }
+  }
+]

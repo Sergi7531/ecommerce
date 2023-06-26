@@ -3,7 +3,7 @@
     "model": "selling.Tag",
     "pk": 1,
     "fields": {
-      "name": "Man",
+      "name": "Men",
       "relevance": 100
     }
   },
@@ -27,56 +27,40 @@
     "model": "selling.Tag",
     "pk": 4,
     "fields": {
-      "name": "Nike",
-      "relevance": 90
+      "name": "Tops",
+      "relevance": 100
     }
   },
   {
     "model": "selling.Tag",
     "pk": 5,
     "fields": {
-      "name": "Adidas",
-      "relevance": 90
+      "name": "Bottoms",
+      "relevance": 100
     }
   },
   {
     "model": "selling.Tag",
     "pk": 6,
     "fields": {
-      "name": "Calvin Klein",
-      "relevance": 90
+      "name": "Underwear",
+      "relevance": 100
     }
   },
   {
     "model": "selling.Tag",
     "pk": 7,
     "fields": {
-      "name": "The North Face",
-      "relevance": 90
+      "name": "Shoes",
+      "relevance": 100
     }
   },
   {
     "model": "selling.Tag",
     "pk": 8,
     "fields": {
-      "name": "Puma",
-      "relevance": 75
-    }
-  },
-  {
-    "model": "selling.Tag",
-    "pk": 9,
-    "fields": {
-      "name": "Tommy Hilfiger",
-      "relevance": 80
-    }
-  },
-  {
-    "model": "selling.Tag",
-    "pk": 10,
-    "fields": {
-      "name": "Vans",
-      "relevance": 60
+      "name": "Accessories",
+      "relevance": 100
     }
   }
 ]
