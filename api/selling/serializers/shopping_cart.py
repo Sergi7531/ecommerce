@@ -18,4 +18,4 @@ class ShoppingCartSerializer(ModelSerializer):
 
 
 class ShoppingCartAddProductSerializer(Serializer):
-    product = CharField()
+    product_id = CharField()

@@ -4,6 +4,7 @@ from django.db import models
 
 from common.models import SoftDeletionModel
 from selling.managers.product import ProductManager
+from selling.models.brand import Brand
 
 
 class Product(SoftDeletionModel):
@@ -26,7 +27,7 @@ class Product(SoftDeletionModel):
     published = models.BooleanField(default=False)
 
     tags = models.ManyToManyField('selling.Tag', related_name='products', blank=True)
-    brand = models.ForeignKey('selling.Brand', on_delete=models.CASCADE)
+    brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
 
     objects = ProductManager()
 

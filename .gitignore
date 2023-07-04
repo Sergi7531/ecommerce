@@ -11,3 +11,6 @@ docker/mysql-data/
 
 # PyCharm:
 .idea/
+
+# Secret key:
+/api/.env
