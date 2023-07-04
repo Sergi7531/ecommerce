@@ -1,6 +1,5 @@
-from django.shortcuts import get_object_or_404
 from rest_framework import status
-from rest_framework.generics import RetrieveUpdateDestroyAPIView
+from rest_framework.generics import RetrieveUpdateDestroyAPIView, get_object_or_404
 from rest_framework.response import Response
 
 from selling.models import Product
@@ -18,7 +17,6 @@ class ProductViewSet(RetrieveUpdateDestroyAPIView):
 
     def get_object(self):
         product_id = self.kwargs.get('product_id')
-
         return get_object_or_404(self.get_queryset(), id=product_id)
 
     def patch(self, request, *args, **kwargs):

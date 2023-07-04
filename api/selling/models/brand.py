@@ -1,6 +1,6 @@
 from django.db import models
 
-from api.common.models import SoftDeletionModel
+from common.models import SoftDeletionModel
 
 
 class Brand(SoftDeletionModel):

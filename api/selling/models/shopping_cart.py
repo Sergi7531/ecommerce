@@ -1,28 +1,29 @@
+from django.db import models
 from django.utils import timezone
 
+from client.models import EcommerceClient
 from common.models import SoftDeletionModel
 from selling.common.utils import SUBTOTAL_DECIMALS
 from selling.models import Product
-from selling.models.user import User
 
 
 class ShoppingCart(SoftDeletionModel):
     timestamp = models.DateTimeField(auto_now_add=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(EcommerceClient, on_delete=models.CASCADE)
     products = models.ManyToManyField(Product, related_name='products')
-    discounts = models.ManyToManyField(Discount, related_name='discounts')
+    # discounts = models.ManyToManyField(Discount, related_name='discounts')
 
     @property
-    def products_subtotal(self):
-        return round(sum(product.price for product in self.products), SUBTOTAL_DECIMALS)
+    def products_subtotal_no_discounts(self):
+        return round(sum(product.price for product in self.products), SUBTOTAL_DECIMALS) or 0
 
     @property
     def discounts_subtotal(self):
-        return round(sum(discount.price for discount in self.discounts), SUBTOTAL_DECIMALS)
+        return round(sum(discount.price for discount in self.discounts), SUBTOTAL_DECIMALS) or 0
 
     @property
     def cart_subtotal(self):
-        return self.subtotal_no_discounts - self.subtotal_discounts
+        return self.products_subtotal_no_discounts - self.discounts_subtotal or 0
 
     @property
     def timedelta(self):

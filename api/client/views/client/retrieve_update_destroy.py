@@ -2,19 +2,19 @@ from rest_framework import status
 from rest_framework.generics import RetrieveUpdateDestroyAPIView, get_object_or_404
 from rest_framework.response import Response
 
-from client.models import Client
-from client.serializers.client import ClientSerializer, ClientCreationSerializer
+from client.models import EcommerceClient
+from client.serializers.client import EcommerceClientSerializer, EcommerceClientCreationSerializer
 from common.views import HTTP_RETRIEVE_METHODS, HTTP_UPDATE_METHODS
 
 
-class ClientViewSet(RetrieveUpdateDestroyAPIView):
-    queryset = Client.objects.all()
+class EcommerceClientViewSet(RetrieveUpdateDestroyAPIView):
+    queryset = EcommerceClient.objects.all()
 
     def get_serializer_class(self):
         if self.request.method in HTTP_RETRIEVE_METHODS:
-            return ClientSerializer
+            return EcommerceClientSerializer
         elif self.request.method in HTTP_UPDATE_METHODS:
-            return ClientCreationSerializer
+            return EcommerceClientCreationSerializer
 
     def get_object(self):
         client_id = self.kwargs.get('client_id')
@@ -35,6 +35,6 @@ class ClientViewSet(RetrieveUpdateDestroyAPIView):
 
     def delete(self, request, *args, **kwargs):
         client = self.get_object()
-        Client.delete(client)
+        EcommerceClient.delete(client)
 
         return Response(self.get_serializer(client).data, status=status.HTTP_200_OK)
