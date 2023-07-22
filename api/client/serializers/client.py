@@ -6,7 +6,7 @@ from client.models import EcommerceClient
 class EcommerceClientSerializer(ModelSerializer):
     class Meta:
         model = EcommerceClient
-        exclude = ('password', 'updated_at', 'deleted_at', 'is_staff', 'system_user', 'is_deleted')
+        exclude = ('password', 'is_staff')
 
 
 class EcommerceClientCreationSerializer(ModelSerializer):
