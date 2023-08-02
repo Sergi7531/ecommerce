@@ -2,7 +2,7 @@ from django.urls import re_path
 
 from selling.views.product.list_create import ProductsViewSet
 from selling.views.product.retrieve_update_destroy import ProductViewSet
-from selling.views.shopping_cart import ShoppingCartViewSet
+from selling.views.shopping_cart.retrieve_update import ShoppingCartViewSet
 from selling.views.tags.list_create import TagsViewSet
 from selling.views.tags.retrieve_update_destroy import TagViewSet
 

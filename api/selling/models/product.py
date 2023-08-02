@@ -37,4 +37,4 @@ class Product(SoftDeletionModel):
 
     @property
     def trimmed_description(self):
-        return f"{''.join(self.description.split()[:20])}..."
+        return f"{' '.join(self.description.split()[:20])}..."

@@ -3,12 +3,14 @@ from rest_framework.fields import IntegerField, CharField
 from rest_framework.serializers import ModelSerializer, Serializer
 
 from selling.models import Product
+from selling.models.brand import Brand
 
 
 class ProductsSerializer(ModelSerializer):
+
     class Meta:
         model = Product
-        fields = ('id', 'name', 'price', 'published', 'tags')
+        fields = ('id', 'name', 'price', 'published', 'tags', 'trimmed_description')
 
 
 class ProductSerializer(ModelSerializer):
@@ -20,7 +22,7 @@ class ProductSerializer(ModelSerializer):
 class ProductCreationSerializer(ModelSerializer):
     class Meta:
         model = Product
-        fields = ('name', 'price', 'stock', 'description', 'tags')
+        fields = ('name', 'price', 'stock', 'description', 'tags', 'brand')
 
 
 class ProductUpdateSerializer(ModelSerializer):

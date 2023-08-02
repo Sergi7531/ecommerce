@@ -1,7 +1,12 @@
 from uuid import uuid4
 
+from django.contrib.auth import user_logged_in
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from django.utils import timezone
+from knox.models import AuthToken
+from rest_framework import request, status
+from rest_framework.response import Response
 
 
 class EcommerceClient(AbstractUser):
