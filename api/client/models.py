@@ -23,3 +23,13 @@ class EcommerceClient(AbstractUser):
     def set_password(self, raw_password):
         super(EcommerceClient, self).set_password(raw_password)
         self.save()
+
+    def has_token(self, auth_token):
+        token_key = auth_token[:7]
+        return bool(list(AuthToken.objects.filter(user_id=self.id,
+                                                  token_key=token_key)))
+
+    def remove_token(self, auth_token):
+        token_key = auth_token[:7]
+        return AuthToken.objects.filter(user_id=self.id,
+                                        token_key=token_key).delete()
