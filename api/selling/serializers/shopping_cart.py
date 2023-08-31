@@ -1,3 +1,6 @@
+from datetime import timedelta, datetime
+
+from rest_framework.exceptions import ValidationError
 from rest_framework.fields import CharField
 from rest_framework.serializers import ModelSerializer, Serializer
 
@@ -17,5 +20,15 @@ class ShoppingCartSerializer(ModelSerializer):
         fields = ('products_subtotal', 'discounts_subtotal', 'cart_subtotal', 'last_updated_at', 'cart_owner')
 
 
-class ShoppingCartAddProductSerializer(Serializer):
-    product_id = CharField()
+class AddToCartSerializer(Serializer):
+    user = CharField()
+
+    def validate_user(self, user):
+        if not ShoppingCart.objects.filter(user=user, timestamp__gte=datetime.now() + timedelta(hours=1)):
+            raise ValidationError("Shopping cart doesn't belong to user.")
+
+        return user
+
+    def validate(self, attrs):
+        pass
+

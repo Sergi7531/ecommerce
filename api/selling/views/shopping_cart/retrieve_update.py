@@ -5,14 +5,12 @@ from rest_framework.response import Response
 
 from common.views import HTTP_GET, HTTP_UPDATE_METHODS
 from selling.models.shopping_cart import ShoppingCart
-from selling.serializers.shopping_cart import ShoppingCartSerializer, ShoppingCartAddProductSerializer
+from selling.serializers.shopping_cart import ShoppingCartSerializer
 
 
 class ShoppingCartViewSet(RetrieveUpdateAPIView):
     permission_classes = [permissions.IsAuthenticated]
-    queryset = ShoppingCart.all_objects.all()
-
-    input_serializer_class = ShoppingCartAddProductSerializer
+    queryset = ShoppingCart.objects.all()
 
     def get_serializer_class(self):
         if self.request.method in (HTTP_GET, HTTP_UPDATE_METHODS):
