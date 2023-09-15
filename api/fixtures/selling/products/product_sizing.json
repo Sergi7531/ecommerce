@@ -1,0 +1,72 @@
+[
+  {
+    "model": "selling.ProductSizing",
+    "fields": {
+      "pk": 1,
+      "product_id": "bde6cca4-b6a7-41f2-ad93-0dbe13033713",
+      "size_type_id": 5,
+      "amount": 15,
+      "size_short": "S"
+    }
+  },
+  {
+    "model": "selling.ProductSizing",
+    "fields": {
+      "pk": 2,
+      "product_id": "bde6cca4-b6a7-41f2-ad93-0dbe13033713",
+      "size_type_id": 5,
+      "amount": 25,
+      "size_short": "M"
+    }
+  },
+  {
+    "model": "selling.ProductSizing",
+    "fields": {
+      "pk": 3,
+      "product_id": "303b919d-0e46-45ec-b31e-de132f4778b8",
+      "size_type_id": 2,
+      "amount": 20,
+      "size_short": "38"
+    }
+  },
+  {
+    "model": "selling.ProductSizing",
+    "fields": {
+      "pk": 3,
+      "product_id": "303b919d-0e46-45ec-b31e-de132f4778b8",
+      "size_type_id": 2,
+      "amount": 25,
+      "size_short": "39"
+    }
+  },
+  {
+    "model": "selling.ProductSizing",
+    "fields": {
+      "pk": 3,
+      "product_id": "303b919d-0e46-45ec-b31e-de132f4778b8",
+      "size_type_id": 2,
+      "amount": 50,
+      "size_short": "40"
+    }
+  },
+  {
+    "model": "selling.ProductSizing",
+    "fields": {
+      "pk": 3,
+      "product_id": "303b919d-0e46-45ec-b31e-de132f4778b8",
+      "size_type_id": 2,
+      "amount": 100,
+      "size_short": "41"
+    }
+  },
+  {
+    "model": "selling.ProductSizing",
+    "fields": {
+      "pk": 3,
+      "product_id": "303b919d-0e46-45ec-b31e-de132f4778b8",
+      "size_type_id": 2,
+      "amount": 100,
+      "size_short": "42"
+    }
+  }
+]

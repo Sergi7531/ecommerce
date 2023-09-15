@@ -1,0 +1,37 @@
+[
+  {
+    "model": "selling.SizeType",
+    "fields": {
+      "pk": 1,
+      "name": "Clothing, adult"
+    }
+  },
+  {
+    "model": "selling.SizeType",
+    "fields": {
+      "pk": 2,
+      "name": "Shoes, adult"
+    }
+  },
+  {
+    "model": "selling.SizeType",
+    "fields": {
+      "pk": 3,
+      "name": "Clothing, kid"
+    }
+  },
+  {
+    "model": "selling.SizeType",
+    "fields": {
+      "pk": 4,
+      "name": "Shoes, kid"
+    }
+  },
+  {
+    "model": "selling.SizeType",
+    "fields": {
+      "pk": 5,
+      "name": "Accessories"
+    }
+  }
+]

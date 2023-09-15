@@ -1,10 +1,10 @@
 import math
-
 from django.db import models
 
 from common.models import SoftDeletionModel
 from selling.managers.product import ProductManager
-from selling.models.brand import Brand
+from selling.models.product_sizing import ProductSizing
+from selling.models.size_type import SizeType
 
 
 class Product(SoftDeletionModel):
@@ -27,7 +27,8 @@ class Product(SoftDeletionModel):
     published = models.BooleanField(default=False)
 
     tags = models.ManyToManyField('selling.Tag', related_name='products', blank=True)
-    brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
+    # brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
+    sizes = models.ManyToManyField(through=ProductSizing, to=SizeType, related_name='products')
 
     objects = ProductManager()
 
