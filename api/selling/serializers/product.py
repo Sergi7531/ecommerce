@@ -20,7 +20,7 @@ class ProductSerializer(ModelSerializer):
 class ProductCreationSerializer(ModelSerializer):
     class Meta:
         model = Product
-        fields = ('name', 'price', 'stock', 'description', 'tags')
+        fields = ('name', 'description', 'price', 'stock', 'tags', 'image_url')
 
 
 class ProductUpdateSerializer(ModelSerializer):
@@ -40,7 +40,3 @@ class ProductsQueryParamsSerializer(Serializer):
         if attrs['min_price'] is not None and attrs['max_price'] is not None:
             if not attrs['min_price'] <= attrs['max_price']:
                 raise ValidationError('Minimum price must be lower than maximum price.')
-
-    def validate(self, attrs):
-        self.validate_prices(attrs)
-        return attrs

@@ -3,7 +3,7 @@ from django.db import models
 
 from common.models import SoftDeletionModel
 from selling.managers.product import ProductManager
-from selling.models.product_sizing import ProductSizing
+from selling.models.sizing import Sizing
 from selling.models.size_type import SizeType
 
 
@@ -28,6 +28,7 @@ class Product(SoftDeletionModel):
 
     tags = models.ManyToManyField('selling.Tag', related_name='products', blank=True)
     # brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
+    sizes = models.ManyToManyField(Sizing, related_name='size_products')
     image_url = models.URLField()
 
     objects = ProductManager()

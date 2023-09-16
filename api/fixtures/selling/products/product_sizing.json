@@ -1,6 +1,6 @@
 [
   {
-    "model": "selling.ProductSizing",
+    "model": "selling.Sizing",
     "pk": 1,
     "fields": {
       "product_id": "bde6cca4-b6a7-41f2-ad93-0dbe13033713",
@@ -10,7 +10,7 @@
     }
   },
   {
-    "model": "selling.ProductSizing",
+    "model": "selling.Sizing",
     "pk": 2,
     "fields": {
       "product_id": "bde6cca4-b6a7-41f2-ad93-0dbe13033713",
@@ -20,7 +20,7 @@
     }
   },
   {
-    "model": "selling.ProductSizing",
+    "model": "selling.Sizing",
     "pk": 3,
     "fields": {
       "product_id": "303b919d-0e46-45ec-b31e-de132f4778b8",
@@ -30,7 +30,7 @@
     }
   },
   {
-    "model": "selling.ProductSizing",
+    "model": "selling.Sizing",
     "pk": 4,
     "fields": {
       "product_id": "303b919d-0e46-45ec-b31e-de132f4778b8",
@@ -40,7 +40,7 @@
     }
   },
   {
-    "model": "selling.ProductSizing",
+    "model": "selling.Sizing",
     "pk": 5,
     "fields": {
       "product_id": "303b919d-0e46-45ec-b31e-de132f4778b8",
@@ -50,7 +50,7 @@
     }
   },
   {
-    "model": "selling.ProductSizing",
+    "model": "selling.Sizing",
     "pk": 6,
     "fields": {
       "product_id": "303b919d-0e46-45ec-b31e-de132f4778b8",
@@ -60,7 +60,7 @@
     }
   },
   {
-    "model": "selling.ProductSizing",
+    "model": "selling.Sizing",
     "pk": 7,
     "fields": {
       "product_id": "303b919d-0e46-45ec-b31e-de132f4778b8",
