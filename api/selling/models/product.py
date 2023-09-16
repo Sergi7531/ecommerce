@@ -28,7 +28,7 @@ class Product(SoftDeletionModel):
 
     tags = models.ManyToManyField('selling.Tag', related_name='products', blank=True)
     # brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
-    sizes = models.ManyToManyField(through=ProductSizing, to=SizeType, related_name='products')
+    image_url = models.URLField()
 
     objects = ProductManager()
 

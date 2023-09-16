@@ -16,7 +16,7 @@ class ProductSizing(models.Model):
     product = models.ForeignKey('selling.Product', on_delete=models.CASCADE)
     size_type = models.ForeignKey(SizeType, on_delete=models.CASCADE)
     amount = models.PositiveIntegerField()
-    size = models.CharField(max_length=7)
+    size_short = models.CharField(max_length=7)
 
     @property
     def choices_by_type(self):

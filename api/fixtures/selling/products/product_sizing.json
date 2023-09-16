@@ -1,8 +1,8 @@
 [
   {
     "model": "selling.ProductSizing",
+    "pk": 1,
     "fields": {
-      "pk": 1,
       "product_id": "bde6cca4-b6a7-41f2-ad93-0dbe13033713",
       "size_type_id": 5,
       "amount": 15,
@@ -11,8 +11,8 @@
   },
   {
     "model": "selling.ProductSizing",
+    "pk": 2,
     "fields": {
-      "pk": 2,
       "product_id": "bde6cca4-b6a7-41f2-ad93-0dbe13033713",
       "size_type_id": 5,
       "amount": 25,
@@ -21,8 +21,8 @@
   },
   {
     "model": "selling.ProductSizing",
+    "pk": 3,
     "fields": {
-      "pk": 3,
       "product_id": "303b919d-0e46-45ec-b31e-de132f4778b8",
       "size_type_id": 2,
       "amount": 20,
@@ -31,8 +31,8 @@
   },
   {
     "model": "selling.ProductSizing",
+    "pk": 4,
     "fields": {
-      "pk": 3,
       "product_id": "303b919d-0e46-45ec-b31e-de132f4778b8",
       "size_type_id": 2,
       "amount": 25,
@@ -41,8 +41,8 @@
   },
   {
     "model": "selling.ProductSizing",
+    "pk": 5,
     "fields": {
-      "pk": 3,
       "product_id": "303b919d-0e46-45ec-b31e-de132f4778b8",
       "size_type_id": 2,
       "amount": 50,
@@ -51,8 +51,8 @@
   },
   {
     "model": "selling.ProductSizing",
+    "pk": 6,
     "fields": {
-      "pk": 3,
       "product_id": "303b919d-0e46-45ec-b31e-de132f4778b8",
       "size_type_id": 2,
       "amount": 100,
@@ -61,8 +61,8 @@
   },
   {
     "model": "selling.ProductSizing",
+    "pk": 7,
     "fields": {
-      "pk": 3,
       "product_id": "303b919d-0e46-45ec-b31e-de132f4778b8",
       "size_type_id": 2,
       "amount": 100,
