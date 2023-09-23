@@ -6,4 +6,3 @@ class Tag(models.Model):
     relevance = models.IntegerField()
 
     related_tags = models.ManyToManyField('self', related_name='tags_related', blank=True)
-

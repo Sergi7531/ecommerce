@@ -3,7 +3,7 @@ from rest_framework.generics import RetrieveUpdateDestroyAPIView, get_object_or_
 from rest_framework.response import Response
 
 from selling.models import Product
-from selling.serializers.product import ProductSerializer, ProductUpdateSerializer
+from selling.serializers.product import ProductSerializer, ProductCreateUpdateSerializer
 
 
 class ProductViewSet(RetrieveUpdateDestroyAPIView):
@@ -13,7 +13,7 @@ class ProductViewSet(RetrieveUpdateDestroyAPIView):
         if self.request.method in ['GET', 'DELETE']:
             return ProductSerializer
         elif self.request.method in ['PUT', 'PATCH']:
-            return ProductUpdateSerializer
+            return ProductCreateUpdateSerializer
 
     def get_object(self):
         product_id = self.kwargs.get('product_id')
@@ -26,6 +26,7 @@ class ProductViewSet(RetrieveUpdateDestroyAPIView):
     def update(self, request, *args, **kwargs):
         partial = kwargs.pop('partial', False)
         instance = self.get_object()
+        request.data['product_id'] = instance.id
         serializer = self.get_serializer(instance, data=request.data, partial=partial)
         serializer.is_valid(raise_exception=True)
         self.perform_update(serializer)
