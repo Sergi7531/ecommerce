@@ -3,6 +3,8 @@ from rest_framework.fields import IntegerField, CharField
 from rest_framework.serializers import ModelSerializer, Serializer
 
 from selling.models import Product
+from selling.models.sizing import Sizing
+from selling.serializers.sizing import SizingSerializer
 
 
 class ProductsSerializer(ModelSerializer):
@@ -17,16 +19,26 @@ class ProductSerializer(ModelSerializer):
         exclude = ('created_at', 'updated_at', 'deleted_at')
 
 
-class ProductCreationSerializer(ModelSerializer):
+class ProductCreateUpdateSerializer(ModelSerializer):
+    sizes = SizingSerializer(source='sizings', many=True, required=False)
+
     class Meta:
         model = Product
-        fields = ('name', 'description', 'price', 'stock', 'tags', 'image_url')
+        fields = ('name', 'description', 'price', 'tags', 'image_url', 'sizes', 'published')
 
+    def validate_sizes(self, sizes):
+        product = self.instance
+        all_size_types = set(size['size_type'].id for size in sizes)
 
-class ProductUpdateSerializer(ModelSerializer):
-    class Meta:
-        model = Product
-        exclude = ('id', 'created_at', 'updated_at', 'deleted_at')
+        if not product.sizes.filter(size_type__in=all_size_types) and product.sizes.count() > 0 or \
+                len(all_size_types) > 1:
+            raise ValidationError('Invalid sizing, all product sizes must be same kind')
+
+        for size in sizes:
+            if size['size_short'] not in Sizing.choices_by_type(size['size_type'].id):
+                raise ValidationError('Invalid sizing for size type')
+
+        return sizes
 
 
 class ProductsQueryParamsSerializer(Serializer):

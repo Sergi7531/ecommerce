@@ -7,10 +7,10 @@ from selling.models.size_type import SizeType
 
 class Sizing(models.Model):
     _SIZE_TYPE_TO_CLASS = {
-        SizeType.ADULT_CLOTHING: AdultSizing.ClothingSize,
-        SizeType.ADULT_SHOES: AdultSizing.ShoeSize,
-        SizeType.KID_CLOTHING: KidSizing.ClothingSize,
-        SizeType.KID_SHOES: KidSizing.ShoeSize,
+        SizeType.ADULT_CLOTHING_ID: AdultSizing.ClothingSize,
+        SizeType.ADULT_SHOES_ID: AdultSizing.ShoeSize,
+        SizeType.KID_CLOTHING_ID: KidSizing.ClothingSize,
+        SizeType.KID_SHOES_ID: KidSizing.ShoeSize,
     }
 
     size_type = models.ForeignKey(SizeType, on_delete=models.CASCADE)

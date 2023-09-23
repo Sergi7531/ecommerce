@@ -1,3 +1,5 @@
+from functools import reduce
+
 import math
 from django.db import models
 
@@ -22,7 +24,6 @@ class Product(SoftDeletionModel):
     description = models.TextField()
     # IntegerField so we don't have to play with decimals in the backend.
     price = models.PositiveIntegerField()
-    stock = models.PositiveIntegerField()
     # gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
     published = models.BooleanField(default=False)
 
@@ -36,6 +37,10 @@ class Product(SoftDeletionModel):
     @property
     def formatted_price(self):
         return math.ceil(self.price / 100)
+
+    @property
+    def total_stock(self):
+        return sum([size.amount for size in self.sizes.all()])
 
     @property
     def trimmed_description(self):

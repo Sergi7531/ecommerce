@@ -5,8 +5,8 @@ from rest_framework.response import Response
 
 from common.views import HTTP_GET, HTTP_POST
 from selling.models import Product
-from selling.serializers.product import ProductsSerializer, ProductCreationSerializer, ProductsQueryParamsSerializer, \
-    ProductSerializer
+from selling.serializers.product import ProductsSerializer, ProductsQueryParamsSerializer, \
+    ProductSerializer, ProductCreateUpdateSerializer
 
 
 class ProductsViewSet(ListCreateAPIView):
@@ -15,7 +15,7 @@ class ProductsViewSet(ListCreateAPIView):
         if self.request.method == HTTP_GET:
             return ProductsSerializer
         elif self.request.method == HTTP_POST:
-            return ProductCreationSerializer
+            return ProductCreateUpdateSerializer
 
     def get_queryset(self):
         serializer = ProductsQueryParamsSerializer(data=self.request.query_params)
