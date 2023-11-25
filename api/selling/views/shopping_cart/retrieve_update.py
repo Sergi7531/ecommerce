@@ -1,24 +1,36 @@
 from rest_framework import status
 from rest_framework.generics import RetrieveUpdateAPIView, get_object_or_404
+from rest_framework import permissions
 from rest_framework.response import Response
 
 from common.views import HTTP_GET, HTTP_UPDATE_METHODS
 from selling.models.shopping_cart import ShoppingCart
-from selling.serializers.shopping_cart import ShoppingCartSerializer, ShoppingCartAddProductSerializer
+from selling.serializers.shopping_cart import ShoppingCartSerializer
 
 
 class ShoppingCartViewSet(RetrieveUpdateAPIView):
-    queryset = ShoppingCart.all_objects.all()
-
-    input_serializer_class = ShoppingCartAddProductSerializer
+    permission_classes = [permissions.IsAuthenticated]
+    queryset = ShoppingCart.objects.all()
 
     def get_serializer_class(self):
-        if self.request.method == (HTTP_GET, HTTP_UPDATE_METHODS):
+        if self.request.method in (HTTP_GET, HTTP_UPDATE_METHODS):
             return ShoppingCartSerializer
 
     def get_object(self):
         shopping_cart_id = self.kwargs.get('shopping_cart_id')
         return get_object_or_404(self.get_queryset(), id=shopping_cart_id)
+
+    def retrieve(self):
+        result_dict = {}
+        status_code = status.HTTP_200_OK
+        instance = self.get_object()
+        if self.request.user.id == instance.user_id:
+            status_code = status.HTTP_403_FORBIDDEN
+            result_dict["errors"] = 'This shopping cart does not belong to you.'
+        else:
+            result_dict = self.get_serializer(instance).data
+
+        return Response(result_dict, status_code)
 
     def patch(self, request, *args, **kwargs):
         kwargs['partial'] = True
@@ -26,6 +38,8 @@ class ShoppingCartViewSet(RetrieveUpdateAPIView):
 
     def update(self, request, *args, **kwargs):
         partial = kwargs.pop('partial', False)
+
+
 
         if partial:
             instance = self.get_object()

@@ -1,50 +1,57 @@
 [
   {
     "model": "selling.Brand",
-    "pk": 1,
     "fields": {
+      "created_at":"2023-07-24 00:00:00.00000",
+      "updated_at":"2023-07-24 00:00:00.00000",
       "name": "Nike"
     }
   },
   {
     "model": "selling.Brand",
-    "pk": 2,
     "fields": {
+      "created_at": "2023-07-24 00:00:00.00000",
+      "updated_at": "2023-07-24 00:00:00.00000",
       "name": "Adidas"
     }
   },
   {
     "model": "selling.Brand",
-    "pk": 3,
     "fields": {
+      "created_at": "2023-07-24 00:00:00.00000",
+      "updated_at": "2023-07-24 00:00:00.00000",
       "name": "Calvin Klein"
     }
   },
   {
     "model": "selling.Brand",
-    "pk": 4,
     "fields": {
+      "created_at": "2023-07-24 00:00:00.00000",
+      "updated_at": "2023-07-24 00:00:00.00000",
       "name": "The North Face"
     }
   },
   {
     "model": "selling.Brand",
-    "pk": 5,
     "fields": {
+      "created_at": "2023-07-24 00:00:00.00000",
+      "updated_at": "2023-07-24 00:00:00.00000",
       "name": "Puma"
     }
   },
   {
     "model": "selling.Brand",
-    "pk": 6,
     "fields": {
+      "created_at": "2023-07-24 00:00:00.00000",
+      "updated_at": "2023-07-24 00:00:00.00000",
       "name": "Tommy Hilfiger"
     }
   },
   {
     "model": "selling.Brand",
-    "pk": 7,
     "fields": {
+      "created_at": "2023-07-24 00:00:00.00000",
+      "updated_at": "2023-07-24 00:00:00.00000",
       "name": "Vans"
     }
   }

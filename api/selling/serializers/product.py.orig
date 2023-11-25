@@ -3,8 +3,12 @@ from rest_framework.fields import IntegerField, CharField
 from rest_framework.serializers import ModelSerializer, Serializer
 
 from selling.models import Product
+<<<<<<< HEAD
 from selling.models.sizing import Sizing
 from selling.serializers.sizing import SizingSerializer
+=======
+from selling.models.brand import Brand
+>>>>>>> feature/auth_models
 
 
 class ProductsSerializer(ModelSerializer):
@@ -25,7 +29,11 @@ class ProductCreateUpdateSerializer(ModelSerializer):
 
     class Meta:
         model = Product
+<<<<<<< HEAD
         fields = ('name', 'description', 'price', 'tags', 'image_url', 'sizes', 'published')
+=======
+        fields = ('name', 'price', 'stock', 'description', 'tags', 'brand')
+>>>>>>> feature/auth_models
 
     def validate_sizes(self, sizes):
         product = self.instance

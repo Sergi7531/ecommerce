@@ -1,12 +1,15 @@
+from rest_framework.fields import CharField
 from rest_framework.serializers import ModelSerializer
 
 from client.models import EcommerceClient
 
 
 class EcommerceClientSerializer(ModelSerializer):
+    auth_token = CharField(read_only=True)
+
     class Meta:
         model = EcommerceClient
-        exclude = ('password', 'updated_at', 'deleted_at', 'is_staff', 'system_user', 'is_deleted')
+        exclude = ('password', 'is_staff')
 
 
 class EcommerceClientCreationSerializer(ModelSerializer):

@@ -13,5 +13,5 @@ class Brand(SoftDeletionModel):
     BRAND_VANS_ID = 7
 
     name = models.CharField(max_length=60)
-    url_slug = models.SlugField()
+    url_slug = models.SlugField(null=False, blank=False)
     # categories = models.ManyToManyField('selling.Category', related_name='brand_category', blank=True)
