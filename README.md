@@ -4,10 +4,10 @@ This is a bare-bones API oriented for an "ecommerce" that can be in the need of 
 
 The project is entirely made using the Django framework, more specifically layered with the Django REST package to provide the structure of a typical API.
 
-The entire application is stored inside of the `api` source folder.
+The entire application is stored inside the `api` source folder.
 
 The structure that features this project is dockerized. There are 2 containers by default defined in `docker-compose-api.yaml` 
-file: `db` and `ecommerce_api`:  
+file: `ecommerce_api` and `db`:  
 
 ## Download the project:
 
@@ -32,7 +32,7 @@ file: `db` and `ecommerce_api`:
     ecommerce_password
 
 ## Automated tests:
-**There are currently no tests for this application and they are not expected to be implemented yet.**
+**There are currently no tests for this application, and they are not expected to be implemented yet.**
 
 --- 
 
