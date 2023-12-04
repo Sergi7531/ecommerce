@@ -1,13 +1,17 @@
+from knox.auth import TokenAuthentication
 from rest_framework import status
 from rest_framework.generics import RetrieveUpdateDestroyAPIView, get_object_or_404
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
 from client.models import EcommerceClient
-from client.serializers.client import EcommerceClientSerializer, EcommerceClientCreationSerializer
+from client.serializers.client import MeSerializer, EcommerceClientCreationSerializer, EcommerceClientSerializer
 from common.views import HTTP_RETRIEVE_METHODS, HTTP_UPDATE_METHODS
 
 
 class EcommerceClientViewSet(RetrieveUpdateDestroyAPIView):
+    authentication_classes = (TokenAuthentication,)
+    permission_classes = (IsAuthenticated,)
     queryset = EcommerceClient.objects.all()
 
     def get_serializer_class(self):

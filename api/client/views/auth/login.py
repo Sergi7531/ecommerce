@@ -7,7 +7,7 @@ from rest_framework.response import Response
 from client.managers.knox_auth import KnoxAuthManager
 from client.models import EcommerceClient
 from client.serializers.auth import LoginSerializer
-from client.serializers.client import EcommerceClientSerializer
+from client.serializers.client import MeSerializer
 
 
 class LoginView(GenericAPIView):
@@ -34,7 +34,7 @@ class LoginView(GenericAPIView):
         else:
             knox_auth_manager = KnoxAuthManager(request, client)
             result_dict["token"] = knox_auth_manager.knox_login()
-            result_dict["client"] = EcommerceClientSerializer(client, many=False).data
+            result_dict["client"] = MeSerializer(client, many=False).data
 
         client.last_login = timezone.now()
         client.save()

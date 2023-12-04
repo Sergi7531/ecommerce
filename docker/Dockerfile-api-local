@@ -1,7 +1,7 @@
-FROM python:3.7-buster
+FROM python:3.10
 
 ENV PYTHONUNBUFFERED 1
-RUN apt-get clean && apt-get -y update && apt-get install -y locales
+RUN apt-get clean && apt-get -y update
 RUN mkdir /code
 ADD ./requirements /requirements/
 RUN pip install -r requirements/requirements.txt

@@ -4,12 +4,16 @@ from rest_framework.serializers import ModelSerializer
 from client.models import EcommerceClient
 
 
-class EcommerceClientSerializer(ModelSerializer):
-    auth_token = CharField(read_only=True)
-
+class MeSerializer(ModelSerializer):
     class Meta:
         model = EcommerceClient
         exclude = ('password', 'is_staff')
+
+
+class EcommerceClientSerializer(ModelSerializer):
+    class Meta:
+        model = EcommerceClient
+        fields = ('id', 'username', 'first_name', 'last_name', 'email', 'last_login', 'date_joined')
 
 
 class EcommerceClientCreationSerializer(ModelSerializer):
@@ -22,4 +26,4 @@ class EcommerceClientCreationSerializer(ModelSerializer):
 class EcommerceClientsSerializer(ModelSerializer):
     class Meta:
         model = EcommerceClient
-        fields = ('id', 'username', 'first_name', 'last_name', 'email', 'last_login')
+        fields = ('id', 'username', 'first_name', 'last_name')
