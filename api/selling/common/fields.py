@@ -14,3 +14,5 @@ class ShoppingCartCharField(ShoppingCartBaseField, CharField):
 
 class ShoppingCartPriceField(ShoppingCartBaseField, FloatField):
     pass
+    # def get_value(self, dictionary):
+    #     return super().get_value() / 100

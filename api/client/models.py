@@ -1,12 +1,8 @@
 from uuid import uuid4
 
-from django.contrib.auth import user_logged_in
 from django.contrib.auth.models import AbstractUser
 from django.db import models
-from django.utils import timezone
 from knox.models import AuthToken
-from rest_framework import request, status
-from rest_framework.response import Response
 
 
 class EcommerceClient(AbstractUser):
@@ -33,3 +29,10 @@ class EcommerceClient(AbstractUser):
         token_key = auth_token[:7]
         return AuthToken.objects.filter(user_id=self.id,
                                         token_key=token_key).delete()
+
+    @property
+    def shopping_cart(self):
+        from selling.models.shopping_cart import ShoppingCart
+        shopping_cart, _ = ShoppingCart.objects.get_or_create(user=self)
+
+        return shopping_cart

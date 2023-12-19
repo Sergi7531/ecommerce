@@ -8,20 +8,21 @@ from selling.serializers.sizing import SizingSerializer
 
 
 class ProductsSerializer(ModelSerializer):
-
     class Meta:
         model = Product
         fields = ('id', 'name', 'price', 'published', 'tags', 'trimmed_description')
 
 
 class ProductSerializer(ModelSerializer):
+    sizes = SizingSerializer(many=True, required=False)
+
     class Meta:
         model = Product
-        exclude = ('created_at', 'updated_at', 'deleted_at')
+        fields = ('id', 'name', 'description', 'price', 'published', 'image_url', 'tags', 'sizes')
 
 
 class ProductCreateUpdateSerializer(ModelSerializer):
-    sizes = SizingSerializer(source='sizings', many=True, required=False)
+    sizes = SizingSerializer(many=True, required=False)
 
     class Meta:
         model = Product
@@ -31,15 +32,42 @@ class ProductCreateUpdateSerializer(ModelSerializer):
         product = self.instance
         all_size_types = set(size['size_type'].id for size in sizes)
 
-        if not product.sizes.filter(size_type__in=all_size_types) and product.sizes.count() > 0 or \
-                len(all_size_types) > 1:
-            raise ValidationError('Invalid sizing, all product sizes must be same kind')
+        invalid_sizing_msg = 'Invalid sizing, all product sizes must be same kind'
+
+        if product:
+            if not product.sizes.filter(size_type__in=all_size_types) and product.sizes.count() > 0:
+                raise ValidationError(invalid_sizing_msg)
+        else:
+            if len(all_size_types) > 1:
+                raise ValidationError(invalid_sizing_msg)
 
         for size in sizes:
             if size['size_short'] not in Sizing.choices_by_type(size['size_type'].id):
                 raise ValidationError('Invalid sizing for size type')
 
         return sizes
+
+    def create(self, validated_data):
+        sizings = validated_data.pop('sizes', [])
+
+        product = super().create(validated_data)
+
+        for sizing in sizings:
+            sizing_data = {**sizing, **{'product': product}}
+            Sizing(**sizing_data).save()
+
+        return product
+
+    def update(self, instance, validated_data):
+        sizings = validated_data.pop('sizes', [])
+        product = super().update(instance, validated_data)
+        Sizing.objects.filter(product=product).delete()
+
+        for sizing in sizings:
+            sizing_data = {**sizing, **{'product': product}}
+            Sizing(**sizing_data).save()
+
+        return product
 
 
 class ProductsQueryParamsSerializer(Serializer):
