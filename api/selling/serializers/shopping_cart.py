@@ -26,7 +26,7 @@ class ShoppingCartSerializer(ModelSerializer):
     products_subtotal = ShoppingCartPriceField(source='products_subtotal_no_discounts')
     discounts_subtotal = ShoppingCartPriceField()
     cart_subtotal = ShoppingCartPriceField()
-    last_updated_at = ShoppingCartCharField(source='timedelta')
+    last_updated_at = ShoppingCartCharField(source='updated_at')
     cart_owner = ShoppingCartCharField(source='shopping_cart_owner')
 
     class Meta:

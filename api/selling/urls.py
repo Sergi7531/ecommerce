@@ -11,12 +11,13 @@ urlpatterns = [
     # Products:
     re_path(r'^products/$', ProductsViewSet.as_view(), name="list_create"),
     re_path(r'^products/(?P<product_id>[0-9_a-zA-Z\-]+)/?$', ProductViewSet.as_view(), name="retrieve_update"),
-    re_path(r'^products/(?P<product_id>[0-9_a-zA-Z\-]+)/add_to_cart/?$', AddToCartView.as_view(), name="add_to_cart"),
 
     # Tags:
     re_path(r'^tags/$', TagsViewSet.as_view(), name="list_create"),
     re_path(r'^tags/(?P<tag_id>[0-9]+)/?$', TagViewSet.as_view(), name="retrieve_update_destroy"),
 
     # Shopping cart:
-    re_path(r'^cart/(?P<shopping_cart_id>[0-9]+)/?$', CartViewSet.as_view(), name="retrieve_update"),
+    re_path(r'^cart/(?P<cart_id>[0-9_a-zA-Z\-]+)/?$', CartViewSet.as_view(), name="retrieve"),
+    re_path(r'^cart/?$', AddToCartView.as_view(), name="add_to_cart"),
+
 ]

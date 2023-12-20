@@ -14,7 +14,7 @@ from selling.models.shopping_cart_product import ShoppingCartProduct
 class ShoppingCart(SoftDeletionModel):
     timestamp = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(EcommerceClient, on_delete=models.CASCADE)
-    products = models.ManyToManyField('ShoppingCartProduct', related_name='products')
+    products = models.ManyToManyField('ShoppingCartProduct', related_name='products_in_cart')
     # discounts = models.ManyToManyField(Discount, related_name='discounts')
 
     objects = ShoppingCartManager(expired=False)
@@ -22,8 +22,7 @@ class ShoppingCart(SoftDeletionModel):
 
     @property
     def products_subtotal_no_discounts(self):
-        # TODO: FIX THIS PRODUCT.PRODUCT, IT'S SO WRONG
-        return round(sum(product.product.price for product in self.products.all()), SUBTOTAL_DECIMALS) or 0
+        return round(sum(cart_product.product.price for cart_product in self.products.all()), SUBTOTAL_DECIMALS) or 0
 
     @property
     def discounts_subtotal(self):
@@ -33,10 +32,6 @@ class ShoppingCart(SoftDeletionModel):
     @property
     def cart_subtotal(self):
         return self.products_subtotal_no_discounts - self.discounts_subtotal or 0
-
-    @property
-    def timedelta(self):
-        return timezone.now() - self.updated_at
 
     @property
     def shopping_cart_owner(self):

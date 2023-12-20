@@ -1,0 +1,116 @@
+<!-- checkout.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Checkout</title>
+
+        <!-- Add your CSS stylesheets or link to a CDN here -->
+        <style>
+            body {
+                font-family: 'Arial', sans-serif;
+                background-color: #f2f2f2;
+                margin: 0;
+                padding: 0;
+            }
+
+            header {
+                background-color: #87CEEB; /* Light blue-ish color */
+                padding: 20px;
+                text-align: center;
+                color: white;
+            }
+
+            h1 {
+                margin-bottom: 20px;
+            }
+
+            .product-container {
+                display: flex;
+                border: 1px solid #ddd;
+                margin-bottom: 10px;
+                padding: 10px;
+                background-color: white;
+                border-radius: 8px;
+            }
+
+            .product-image {
+                width: 80px;
+                height: 80px;
+                object-fit: cover;
+                margin-right: 10px;
+            }
+
+            .product-details {
+                flex-grow: 1;
+            }
+
+            .product-name {
+                font-weight: bold;
+                margin-bottom: 5px;
+            }
+
+            .product-price {
+                font-weight: bold;
+                margin-top: 5px;
+            }
+
+            .product-description {
+                color: #555;
+            }
+
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-top: 20px;
+            }
+
+            th, td {
+                border: 1px solid #ddd;
+                padding: 8px;
+                text-align: left;
+            }
+
+            th {
+                background-color: #f2f2f2;
+            }
+        </style>
+    </head>
+    <header>
+            <h1>Checkout</h1>
+        </header>
+    <body>
+        {% for product in products %}
+        <div class="product-container">
+            <img class="product-image" src="{{ product.image_url }}" alt="{{ product.name }}">
+            <div class="product-details">
+                <div class="product-name">{{ product.name }}</div>
+                <div class="product-price">${{ product.price }}</div>
+                <div class="product-description">{{ product.trimmed_description }}</div>
+            </div>
+        </div>
+        {% endfor %}
+
+        <table>
+            <thead>
+            <tr>
+                <th>Product</th>
+                <th>Price</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for product in products %}
+            <tr>
+                <td>{{ product.name }}</td>
+                <td>${{ product.price }}</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <h2>Subtotal: ${{ products_subtotal }}</h2>
+    </body>
+</html>
