@@ -57,4 +57,3 @@ class ShoppingCart(SoftDeletionModel):
             cart_product.save()
 
         return cart_product
-

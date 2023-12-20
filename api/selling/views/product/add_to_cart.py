@@ -23,9 +23,9 @@ class AddToCartView(CreateAPIView):
         user = self.request.user
         cart = user.shopping_cart
 
-        product = get_object_or_404(Product, id=serializer.validated_data['product'])
-        sizing = get_object_or_404(Sizing.objects.filter(product_id=product.id), id=serializer.validated_data['sizing'])
+        product = get_object_or_404(Product, id=serializer.validated_data['product_id'])
+        sizing = get_object_or_404(Sizing.objects.filter(product_id=product.id), id=serializer.validated_data['sizing_id'])
 
-        cart.add_product_to_cart(product, sizing)
+        cart.add_product_to_cart(product, sizing, serializer.validated_data['amount'])
 
         return Response(self.output_serializer_class(cart).data, status=status.HTTP_201_CREATED)
