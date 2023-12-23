@@ -13,7 +13,7 @@ class NudeProjectSource(NudeProjectBaseClass):
 
     @property
     def complete_url(self):
-        return f"{self.url}?page={self.page_number}"
+        return f"{self.url.split('?')[0]}?page={self.page_number}"
 
     @property
     def product_items(self):

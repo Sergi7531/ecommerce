@@ -20,7 +20,7 @@ class NudeProjectProduct(NudeProjectBaseClass):
 
     @property
     def price(self):
-        return int(self.product_item.select_one('.ProductItem__Price').text.strip().replace('€', ''))
+        return float(self.product_item.select_one('.ProductItem__Price').text.strip().replace('€', '').replace(',', '.'))
 
     @property
     def _product_non_formatted_url(self):
