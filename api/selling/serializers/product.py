@@ -10,7 +10,7 @@ from selling.serializers.sizing import SizingSerializer
 class ProductsSerializer(ModelSerializer):
     class Meta:
         model = Product
-        fields = ('id', 'name', 'price', 'published', 'tags', 'trimmed_description')
+        fields = ('id', 'name', 'image_url', 'price', 'tags', 'trimmed_description')
 
 
 class ProductSerializer(ModelSerializer):

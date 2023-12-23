@@ -1,7 +1,7 @@
 from rest_framework.fields import CharField
 from rest_framework.serializers import ModelSerializer
 
-from client.models import EcommerceClient
+from client.models.ecommerce_client import EcommerceClient
 
 
 class MeSerializer(ModelSerializer):

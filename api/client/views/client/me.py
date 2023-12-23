@@ -2,7 +2,7 @@ from knox.auth import TokenAuthentication
 from rest_framework.generics import RetrieveAPIView, get_object_or_404
 from rest_framework.permissions import IsAuthenticated
 
-from client.models import EcommerceClient
+from client.models.ecommerce_client import EcommerceClient
 from client.serializers.client import MeSerializer
 from common.views import HTTP_RETRIEVE_METHODS
 

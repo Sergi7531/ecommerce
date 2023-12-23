@@ -20,7 +20,7 @@ class Product(SoftDeletionModel):
         (UNISEX, 'Unisex'),
     )
 
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, unique=True)
     description = models.TextField()
     # IntegerField so we don't have to play with decimals in the backend.
     price = models.PositiveIntegerField()
@@ -28,7 +28,6 @@ class Product(SoftDeletionModel):
     published = models.BooleanField(default=False)
 
     tags = models.ManyToManyField('selling.Tag', related_name='products', blank=True)
-    # brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
     image_url = models.URLField()
 
     objects = ProductManager()

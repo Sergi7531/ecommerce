@@ -2,7 +2,7 @@ from knox.models import AuthToken
 from rest_framework.generics import ListCreateAPIView
 from rest_framework.response import Response
 
-from client.models import EcommerceClient
+from client.models.ecommerce_client import EcommerceClient
 from client.serializers.client import EcommerceClientsSerializer, \
     MeSerializer, EcommerceClientCreationSerializer
 from common.views import HTTP_CREATE_METHODS

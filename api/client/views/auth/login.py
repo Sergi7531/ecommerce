@@ -5,7 +5,7 @@ from rest_framework.generics import GenericAPIView, get_object_or_404
 from rest_framework.response import Response
 
 from client.managers.knox_auth import KnoxAuthManager
-from client.models import EcommerceClient
+from client.models.ecommerce_client import EcommerceClient
 from client.serializers.auth import LoginSerializer
 from client.serializers.client import MeSerializer
 
