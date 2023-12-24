@@ -10,6 +10,8 @@ class AdultSizing:
         EXTRA_LARGE = 'XL', 'Extra large'
         EXTRA_EXTRA_LARGE = 'XXL', 'Extra extra large'
 
+    """
+    Not currently in use (nor planned)
     class ShoeSize(models.TextChoices):
         THIRTY_EIGHT = '38'
         THIRTY_NINE = '39'
@@ -24,3 +26,4 @@ class AdultSizing:
         FORTY_FOUR = '44'
         FORTY_FIVE = '45'
         FORTY_SIX = '46'
+    """

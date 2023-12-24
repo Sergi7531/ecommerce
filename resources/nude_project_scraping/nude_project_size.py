@@ -29,14 +29,17 @@ class NudeProjectSizing:
         sizes = []
 
         sizes_container = self.product.select_one('.SizeSwatchList')
-        if sizes_container:
+
+        if self.product.select_one(".SoldOut"):
+            return sizes
+
+        if sizes_container and not 'ONE SIZE' in sizes_container.text.strip():
             for size_short, amount in self._SIZE_AMOUNT_CORRESPONDENCE.items():
                 sizes.append({"size_type": self.SIZE_TYPE_CLOTHING,
                               "size_short": size_short,
                               "amount": amount})
-
         else:
-            sizes.append({"size_type": self.SIZE_TYPE_CLOTHING,
+            sizes.append({"size_type": self.SIZE_TYPE_ACCESSORIES,
                           "size_short": "ONE SIZE",
                           "amount": 100})
 

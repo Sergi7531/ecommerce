@@ -1,3 +1,5 @@
+import json
+
 import requests
 
 from resources.nude_project_scraping.nude_project_product import NudeProjectProduct
@@ -6,7 +8,7 @@ from resources.nude_project_scraping.nude_project_product import NudeProjectProd
 class EcommerceApi:
     base_url = 'http://localhost:8000/api/v1'
 
-    def post_product(self, nude_project_product: NudeProjectProduct):
+    def post_product(self, nude_project_product: NudeProjectProduct) -> int:
         payload = {
             "name": nude_project_product.name,
             "description": nude_project_product.description,
@@ -17,4 +19,10 @@ class EcommerceApi:
             "sizes": nude_project_product.sizes
         }
 
-        return requests.post(f'{self.base_url}/products/', data=payload).status_code
+        response = requests.post(f'{self.base_url}/products/', data=json.dumps(payload),
+                                 headers={'Content-Type': 'application/json'})
+
+        if response.status_code not in [200, 201]:
+            print(f'Product {nude_project_product.name} failed. Response: {response.text}')
+
+        return response.status_code
