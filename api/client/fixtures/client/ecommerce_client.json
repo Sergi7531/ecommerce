@@ -1,0 +1,21 @@
+[
+  {
+    "model": "client.ecommerceclient",
+    "pk": "490d36cb-9b21-4125-80e7-8804fbb8f233",
+    "fields": {
+      "password": "pbkdf2_sha256$600000$E8b21JyNryakN0cshtG2WP$tzLrgS5eoHAJogTy0Qd4IC3I/vai6R/brbHzHbDgizY=",
+      "last_login": "2024-01-02T21:49:02.730Z",
+      "is_superuser": false,
+      "username": "Sergi_7531",
+      "first_name": "Sergio",
+      "last_name": "Domínguez",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2024-01-02T21:48:56.725Z",
+      "email": "sergidominguezrivas@gmail.com",
+      "address": null,
+      "groups": [],
+      "user_permissions": []
+    }
+  }
+]

@@ -9,8 +9,7 @@ class EcommerceClient(AbstractUser):
     id = models.UUIDField(primary_key=True, default=uuid4, editable=False)
     email = models.EmailField(unique=True)
 
-    class Meta:
-        abstract = False
+    address = models.ForeignKey('Address', on_delete=models.CASCADE, null=True)
 
     @property
     def full_name(self):

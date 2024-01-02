@@ -1,9 +1,7 @@
-from knox.views import LoginView
 from django.contrib.auth import user_logged_in
 from django.db.models.manager import BaseManager
-from django.utils import timezone
 from knox.models import AuthToken
-from rest_framework.exceptions import ValidationError
+from knox.views import LoginView
 
 
 class KnoxAuthManager(BaseManager):

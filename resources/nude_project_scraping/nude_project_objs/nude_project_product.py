@@ -1,5 +1,5 @@
-from resources.nude_project_scraping.nude_project_base_class import NudeProjectBaseClass
-from resources.nude_project_scraping.nude_project_size import NudeProjectSizing
+from resources.nude_project_scraping.nude_project_objs.nude_project_base_class import NudeProjectBaseClass
+from resources.nude_project_scraping.nude_project_objs.nude_project_size import NudeProjectSizing
 
 
 class NudeProjectProduct(NudeProjectBaseClass):

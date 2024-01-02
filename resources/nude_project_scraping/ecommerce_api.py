@@ -2,7 +2,7 @@ import json
 
 import requests
 
-from resources.nude_project_scraping.nude_project_product import NudeProjectProduct
+from resources.nude_project_scraping.nude_project_objs.nude_project_product import NudeProjectProduct
 
 
 class EcommerceApi:

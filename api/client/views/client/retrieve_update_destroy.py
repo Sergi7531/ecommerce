@@ -16,10 +16,7 @@ class EcommerceClientViewSet(RetrieveUpdateDestroyAPIView):
     output_serializer_class = MeSerializer
 
     def get_serializer_class(self):
-        if self.request.method in HTTP_RETRIEVE_METHODS:
-            return EcommerceClientSerializer
-        elif self.request.method in HTTP_UPDATE_METHODS:
-            return EcommerceClientSerializer
+        return EcommerceClientSerializer
 
     def get_object(self):
         client_id = self.kwargs.get('client_id')
@@ -36,12 +33,16 @@ class EcommerceClientViewSet(RetrieveUpdateDestroyAPIView):
         serializer.is_valid(raise_exception=True)
         self.perform_update(serializer)
 
-        client = self.request.user
-        password = request.data.get('password')
 
+        # TODO: Update password system must be via a different endpoint auth/update_password/.
+        #  Current password will have to be provided in this new endpoint along with the new password,
+        #  in order to successfully change it.
+
+        # client = self.request.user
+        # password = request.data.get('password')
         # Check for a new password submitted within the update request:
-        if password and not client.check_password(password):
-            client.set_password(password)
+        # if password and not client.check_password(password):
+        #     client.set_password(password)
 
         return Response(self.output_serializer_class(instance).data, status=status.HTTP_200_OK)
 
