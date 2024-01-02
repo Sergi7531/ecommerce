@@ -4,7 +4,7 @@
     "pk": 1,
     "fields": {
       "name": "Free",
-      "extra_text": "over 50€ Spain delivery, over 100€ worldwide",
+      "extra_text": "Delivered within 3-5 business days via GLS with your order over 50€.",
       "price": 0
     }
   },
@@ -13,7 +13,7 @@
     "pk": 2,
     "fields": {
       "name": "Standard shipping",
-      "extra_text": "over 50€ Spain delivery, over 100€ worldwide",
+      "extra_text": "Delivered within 3-5 business days via GLS.",
       "price": 395
     }
   },
@@ -22,7 +22,7 @@
     "pk": 3,
     "fields": {
       "name": "Urgent shipping",
-      "extra_text": "receiver your order within the next business day",
+      "extra_text": "receive your order within the next business day",
       "price": 795
     }
   }

@@ -1,6 +1,7 @@
 from django.urls import re_path
 
-from selling.views.checkout.checkout import CheckoutViewSet
+from selling.views.checkout.checkout import CheckoutView
+from selling.views.payment_method.list import PaymentMethodsView
 from selling.views.product.add_to_cart import AddToCartView
 from selling.views.product.list_create import ProductsViewSet
 from selling.views.product.retrieve_update_destroy import ProductViewSet
@@ -22,5 +23,6 @@ urlpatterns = [
     re_path(r'^cart/?$', AddToCartView.as_view(), name="add_to_cart"),
 
     # Checkout:
-    re_path(r'^checkout/?$', CheckoutViewSet.as_view(), name="checkout"),
+    re_path(r'^paymentMethods/?$', PaymentMethodsView.as_view(), name="payment_methods"),
+    re_path(r'^checkout/?$', CheckoutView.as_view(), name="checkout"),
 ]

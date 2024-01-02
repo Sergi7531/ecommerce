@@ -1,15 +1,18 @@
 from knox.auth import TokenAuthentication
-from rest_framework.generics import RetrieveAPIView
+from rest_framework.generics import CreateAPIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.status import HTTP_200_OK
 
+from selling.serializers.order import OrderInputSerializer
 
-class CheckoutViewSet(RetrieveAPIView):
+
+class CheckoutView(CreateAPIView):
     authentication_classes = (TokenAuthentication,)
     permission_classes = (IsAuthenticated,)
+    serializer_class = OrderInputSerializer
 
-    def retrieve(self, request, *args, **kwargs):
+    def post(self, request, *args, **kwargs):
         """
         The view must create an order:
 
