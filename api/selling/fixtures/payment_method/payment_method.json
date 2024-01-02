@@ -1,0 +1,37 @@
+[
+  {
+    "model": "selling.paymentmethod",
+    "pk": 1,
+    "fields": {
+      "name": "Credit card"
+    }
+  },
+  {
+    "model": "selling.paymentmethod",
+    "pk": 2,
+    "fields": {
+      "name": "Bizum"
+    }
+  },
+  {
+    "model": "selling.paymentmethod",
+    "pk": 3,
+    "fields": {
+      "name": "PayPal"
+    }
+  },
+  {
+    "model": "selling.paymentmethod",
+    "pk": 4,
+    "fields": {
+      "name": "Google Pay"
+    }
+  },
+  {
+    "model": "selling.paymentmethod",
+    "pk": 5,
+    "fields": {
+      "name": "Apple Pay"
+    }
+  }
+]

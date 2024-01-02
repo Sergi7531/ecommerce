@@ -22,7 +22,7 @@ class ShoppingCart(SoftDeletionModel):
 
     @property
     def products_subtotal_no_discounts(self):
-        return round(sum(cart_product.product.price for cart_product in self.products.all()), SUBTOTAL_DECIMALS) or 0
+        return round(sum(cart_product.product.price * cart_product.amount for cart_product in self.products.all()), SUBTOTAL_DECIMALS) or 0
 
     @property
     def discounts_subtotal(self):
