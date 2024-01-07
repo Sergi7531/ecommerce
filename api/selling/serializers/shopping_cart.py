@@ -47,6 +47,8 @@ class AddToCartSerializer(Serializer):
         return get_object_or_404(Sizing.objects.filter(product=self.product), id=sizing)
 
 
+
+
 class CartUpdateSerializer(ModelSerializer):
     products = AddToCartSerializer(many=True)
 
