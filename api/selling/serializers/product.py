@@ -1,5 +1,5 @@
 from rest_framework.exceptions import ValidationError
-from rest_framework.fields import IntegerField, CharField
+from rest_framework.fields import IntegerField, CharField, FloatField
 from rest_framework.serializers import ModelSerializer, Serializer
 
 from selling.models import Product
@@ -8,9 +8,10 @@ from selling.serializers.sizing import SizingSerializer
 
 
 class ProductsSerializer(ModelSerializer):
+
     class Meta:
         model = Product
-        fields = ('id', 'name', 'image_url', 'price', 'tags', 'trimmed_description')
+        fields = ('id', 'name', 'image_url', 'formatted_price', 'tags', 'trimmed_description')
 
 
 class ProductSerializer(ModelSerializer):
