@@ -85,7 +85,7 @@
     <body>
         {% for product in products %}
         <div class="product-container">
-            <img class="product-image" src="{{ product.image_url }}" alt="{{ product.name }}">
+            <img class="product-image" src="{{ product.thumbnail_url }}" alt="{{ product.name }}">
             <div class="product-details">
                 <div class="product-name">{{ product.name }}</div>
                 <div class="product-price">${{ product.price }}</div>
