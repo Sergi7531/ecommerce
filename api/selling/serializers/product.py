@@ -3,30 +3,37 @@ from rest_framework.fields import IntegerField, CharField
 from rest_framework.serializers import ModelSerializer, Serializer
 
 from selling.models import Product
+from selling.models.product_image import ProductImage
 from selling.models.sizing import Sizing
+from selling.serializers.product_image import ProductImageSerializer
 from selling.serializers.sizing import SizingSerializer
 
-
-class ProductsSerializer(ModelSerializer):
-    class Meta:
-        model = Product
-        fields = ('id', 'name', 'image_url', 'price', 'tags', 'trimmed_description')
+class ProductImagesSerializer(Serializer):
+    images = ProductImageSerializer(many=True)
 
 
-class ProductSerializer(ModelSerializer):
+class ProductsSerializer(ModelSerializer, ProductImagesSerializer):
     sizes = SizingSerializer(many=True, required=False)
 
     class Meta:
         model = Product
-        fields = ('id', 'name', 'description', 'price', 'published', 'image_url', 'tags', 'sizes')
+        fields = ('id', 'name', 'thumbnail_url', 'images', 'price', 'tags', 'sizes', 'trimmed_description')
 
 
-class ProductCreateUpdateSerializer(ModelSerializer):
+class ProductSerializer(ModelSerializer, ProductImagesSerializer):
     sizes = SizingSerializer(many=True, required=False)
 
     class Meta:
         model = Product
-        fields = ('name', 'description', 'price', 'tags', 'image_url', 'sizes', 'published')
+        fields = ('id', 'name', 'images', 'description', 'price', 'published', 'tags', 'sizes')
+
+
+class ProductCreateUpdateSerializer(ModelSerializer, ProductImagesSerializer):
+    sizes = SizingSerializer(many=True, required=False)
+
+    class Meta:
+        model = Product
+        fields = ('name', 'description', 'price', 'tags', 'images', 'sizes', 'published')
 
     def validate_sizes(self, sizes):
         product = self.instance
@@ -49,12 +56,16 @@ class ProductCreateUpdateSerializer(ModelSerializer):
 
     def create(self, validated_data):
         sizings = validated_data.pop('sizes', [])
+        images_data = validated_data.pop('images')
 
         product = super().create(validated_data)
 
         for sizing in sizings:
             sizing_data = {**sizing, **{'product': product}}
             Sizing(**sizing_data).save()
+
+        for image_data in images_data:
+            ProductImage.objects.create(product=product, **image_data)
 
         return product
 

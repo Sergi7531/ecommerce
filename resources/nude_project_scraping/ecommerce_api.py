@@ -14,8 +14,7 @@ class EcommerceApi:
             "description": nude_project_product.description,
             "price": nude_project_product.price * 100,
             "tags": [],
-            # TODO: Change this for "product_images_listing" and "product_images_detail":
-            "image_url": nude_project_product.biggest_image_url,
+            "images": nude_project_product.all_product_images,
             "sizes": nude_project_product.sizes
         }
 
