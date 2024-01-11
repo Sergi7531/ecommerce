@@ -31,7 +31,7 @@ class ShoppingCartSerializer(ModelSerializer):
 
     class Meta:
         model = ShoppingCart
-        fields = ('products', 'products_subtotal', 'discounts_subtotal',
+        fields = ('id', 'total_products_amount', 'products', 'products_subtotal', 'discounts_subtotal',
                   'cart_subtotal', 'last_updated_at', 'cart_owner')
 
 

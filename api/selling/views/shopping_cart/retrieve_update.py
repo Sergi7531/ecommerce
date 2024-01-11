@@ -1,7 +1,6 @@
 from knox.auth import TokenAuthentication
-from rest_framework import permissions
 from rest_framework import status
-from rest_framework.generics import get_object_or_404, RetrieveAPIView, RetrieveUpdateAPIView
+from rest_framework.generics import get_object_or_404, RetrieveUpdateAPIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
