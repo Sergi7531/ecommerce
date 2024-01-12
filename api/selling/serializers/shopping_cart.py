@@ -31,7 +31,7 @@ class ShoppingCartSerializer(ModelSerializer):
 
     class Meta:
         model = ShoppingCart
-        fields = ('products', 'products_subtotal', 'discounts_subtotal',
+        fields = ('id', 'total_products_amount', 'products', 'products_subtotal', 'discounts_subtotal',
                   'cart_subtotal', 'last_updated_at', 'cart_owner')
 
 
@@ -45,6 +45,8 @@ class AddToCartSerializer(Serializer):
 
     def _validate_sizing(self, sizing):
         return get_object_or_404(Sizing.objects.filter(product=self.product), id=sizing)
+
+
 
 
 class CartUpdateSerializer(ModelSerializer):

@@ -1,4 +1,5 @@
 import json
+import logging
 
 import requests
 
@@ -14,8 +15,7 @@ class EcommerceApi:
             "description": nude_project_product.description,
             "price": nude_project_product.price * 100,
             "tags": [],
-            # TODO: Change this for "product_images_listing" and "product_images_detail":
-            "image_url": nude_project_product.biggest_image_url,
+            "images": nude_project_product.all_product_images,
             "sizes": nude_project_product.sizes
         }
 
@@ -23,6 +23,9 @@ class EcommerceApi:
                                  headers={'Content-Type': 'application/json'})
 
         if response.status_code not in [200, 201]:
-            print(f'Product {nude_project_product.name} failed. Response: {response.text}')
+            logging.getLogger('Nude-Project-Scraping').info(f'Product {nude_project_product.name} failed. Response: {response.text}')
+        else:
+            logging.getLogger('Nude-Project-Scraping').info(f'Saved {nude_project_product.name} successfully.')
+
 
         return response.status_code

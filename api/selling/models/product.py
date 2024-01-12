@@ -1,12 +1,10 @@
-from functools import reduce
-
 import math
+
 from django.db import models
 
 from common.models import SoftDeletionModel
 from selling.managers.product import ProductManager
-from selling.models.sizing import Sizing
-from selling.models.size_type import SizeType
+from selling.models.product_image import ProductImage
 
 
 class Product(SoftDeletionModel):
@@ -28,13 +26,24 @@ class Product(SoftDeletionModel):
     published = models.BooleanField(default=False)
 
     tags = models.ManyToManyField('selling.Tag', related_name='products', blank=True)
-    image_url = models.URLField()
 
     objects = ProductManager()
 
     @property
+    def thumbnail_url(self):
+        return self.images.filter(type=ProductImage.ImageType.THUMBNAIL).first().url
+
+    @property
     def formatted_price(self):
         return math.ceil(self.price / 100)
+
+    @property
+    def currency(self):
+        return '€'
+
+    @property
+    def formatted_price_with_currency(self):
+        return f'{self.currency} {self.formatted_price}'
 
     @property
     def total_stock(self):
