@@ -17,14 +17,14 @@ class ProductsSerializer(ModelSerializer, ProductRelationsSerializer):
 
     class Meta:
         model = Product
-        fields = ('id', 'name', 'thumbnail_url', 'images', 'formatted_price', 'tags', 'sizes', 'trimmed_description')
+        fields = ('id', 'name', 'thumbnail_url', 'images', 'formatted_price_with_currency', 'tags', 'sizes', 'trimmed_description')
 
 
 class ProductSerializer(ModelSerializer, ProductRelationsSerializer):
 
     class Meta:
         model = Product
-        fields = ('id', 'name', 'images', 'description', 'formatted_price', 'published', 'tags', 'sizes')
+        fields = ('id', 'name', 'images', 'description', 'formatted_price_with_currency', 'published', 'tags', 'sizes')
 
 
 class ProductCreateUpdateSerializer(ModelSerializer, ProductRelationsSerializer):

@@ -1,4 +1,5 @@
 import json
+import logging
 
 import requests
 
@@ -22,6 +23,9 @@ class EcommerceApi:
                                  headers={'Content-Type': 'application/json'})
 
         if response.status_code not in [200, 201]:
-            print(f'Product {nude_project_product.name} failed. Response: {response.text}')
+            logging.getLogger('Nude-Project-Scraping').info(f'Product {nude_project_product.name} failed. Response: {response.text}')
+        else:
+            logging.getLogger('Nude-Project-Scraping').info(f'Saved {nude_project_product.name} successfully.')
+
 
         return response.status_code

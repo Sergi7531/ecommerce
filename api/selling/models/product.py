@@ -38,6 +38,14 @@ class Product(SoftDeletionModel):
         return math.ceil(self.price / 100)
 
     @property
+    def currency(self):
+        return '€'
+
+    @property
+    def formatted_price_with_currency(self):
+        return f'{self.currency} {self.formatted_price}'
+
+    @property
     def total_stock(self):
         return sum([size.amount for size in self.sizes.all()])
 
