@@ -32,8 +32,9 @@ file: `ecommerce_api` and `db`:
     ecommerce_password
 
 ## Automated tests:
-**There are currently no tests for this application, and they are not expected to be implemented yet.**
 
+### Run the automated tests with the following command:
+    docker-compose -f docker-compose-api.yaml run ecommerce_api pytest /code/tests --verbose
 --- 
 
 ## The public, official documentation for each endpoint of the application is available [here](https://www.postman.com/base-ecommerce-api/workspace/e-commerce-api/documentation/21377778-fb07d91a-046c-4d2c-b4ef-ebd31101de37)

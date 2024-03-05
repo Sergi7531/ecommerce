@@ -1,3 +1,6 @@
+import json
+from uuid import UUID
+
 import pytest
 from rest_framework.reverse import reverse
 
@@ -21,14 +24,14 @@ class TestLogin:
         self.ecommerce_client = EcommerceClientPredictableFactory()
 
     def test_login_ok(self, api_client):
-        response = api_client.post(
-            path=self.url,
-            data={"email": self.ecommerce_client.email,
-                  "password": f"{self.ecommerce_client.first_name}.{self.ecommerce_client.last_name}"})
+        response = api_client.post(path=self.url, data={"email": self.ecommerce_client.email,
+                                                        "password": 'testing_password123'})
+
+        json_response = json.loads(response.content)
 
         assert response.status_code == 200
-        assert response['token'] is not None
-        assert response['id'] == self.ecommerce_client.id
+        assert json_response['token'] is not None
+        assert UUID(json_response['client']['id']) == self.ecommerce_client.id
 
     def test_login_wrong_password(self, api_client):
         response = api_client.post(path=self.url,
@@ -37,7 +40,7 @@ class TestLogin:
         assert response.status_code == 403
 
     def test_login_inexistent_client_email(self, api_client):
-        response = api_client.post(path=self.url, data={"email": f'foo_{self.ecommerce_client.email}',
-                                                        "password": "incorrect_password"})
+        response = api_client.post(path=self.url, data={"email": f'inexistent_email@wrong.com',
+                                                        "password": "testing_password123"})
 
         assert response.status_code == 404
