@@ -4,6 +4,7 @@ services:
     build:
       context: ..
       dockerfile: docker/Dockerfile-api-local
+    image: docker-ecommerce_api
     container_name: "ecommerce_api_local"
     ports:
       - "8000:8000"
@@ -36,3 +37,14 @@ services:
       MYSQL_PASSWORD: "ecommerce_password"
     ports:
       - "3306:3306"
+
+  test:
+    image: docker-ecommerce_api:latest
+    volumes:
+      - type: bind
+        source: ./
+        target: /code
+    depends_on:
+      - db
+    entrypoint: pytest --disable-warnings -vv
+
