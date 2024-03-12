@@ -19,8 +19,6 @@ services:
       - ../resources:/code/resources
     links:
       - db
-    depends_on:
-      - db
     command:
       ../entrypoint-local.sh
 
@@ -38,20 +36,3 @@ services:
       MYSQL_PASSWORD: "ecommerce_password"
     ports:
       - "3306:3306"
-
-  test:
-#    image: docker-ecommerce_api
-    build:
-      context: ..
-      dockerfile: docker/Dockerfile-test
-    volumes:
-      - type: bind
-        source: ./
-        target: /code
-    depends_on:
-      - db
-#    entrypoint: pytest
-#    environment:
-#      - DJANGO_SETTINGS_MODULE=settings.local
-    command:
-      pytest .
