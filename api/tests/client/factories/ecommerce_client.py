@@ -22,7 +22,11 @@ class EcommerceClientFactory(DjangoModelFactory):
     password = factory.django.Password(factory.Faker('password'))
 
 
-class EcommerceClientPredictableFactory(EcommerceClientFactory):
-    email = factory.LazyAttribute(lambda ecp: f'{ecp.first_name}.{ecp.last_name}@example.com'.lower())
+class EcommerceClientPredictableLoginFactory(EcommerceClientFactory):
+    class Meta:
+        model = EcommerceClient
+        skip_postgeneration_save = True
+
+    email = 'test123456789@example.com'
     password = factory.PostGenerationMethodCall('set_password', 'testing_password123')
 

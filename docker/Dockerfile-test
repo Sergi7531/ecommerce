@@ -6,9 +6,6 @@ RUN mkdir /code
 ADD ./requirements /requirements/
 RUN pip install -r requirements/requirements.txt
 
-# STEP 2 - PROJECT
 ADD ./api /code/
 COPY ./entrypoint-local.sh /
 WORKDIR /code
-
-ENV DJANGO_SETTINGS_MODULE="settings.local"

@@ -35,6 +35,10 @@ file: `ecommerce_api` and `db`:
 
 ### Run the automated tests with the following command:
     docker-compose -f docker-compose-api.yaml run ecommerce_api pytest /code/tests --verbose
+
+### Or use the verbose option for more details about the :
+    docker-compose -f docker-compose-api.yaml run ecommerce_api pytest /code/tests --verbose
+
 --- 
 
 ## The public, official documentation for each endpoint of the application is available [here](https://www.postman.com/base-ecommerce-api/workspace/e-commerce-api/documentation/21377778-fb07d91a-046c-4d2c-b4ef-ebd31101de37)

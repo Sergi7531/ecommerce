@@ -13,6 +13,7 @@ services:
       - DB_NAME=ecommerce
       - DB_USER=ecommerce_user
       - DB_PWD=ecommerce_password
+      - DJANGO_SETTINGS_MODULE=settings.local
     volumes:
       - ../api:/code
       - ../resources:/code/resources
@@ -39,12 +40,18 @@ services:
       - "3306:3306"
 
   test:
-    image: docker-ecommerce_api:latest
+#    image: docker-ecommerce_api
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile-test
     volumes:
       - type: bind
         source: ./
         target: /code
     depends_on:
       - db
-    entrypoint: pytest --disable-warnings -vv
-
+#    entrypoint: pytest
+#    environment:
+#      - DJANGO_SETTINGS_MODULE=settings.local
+    command:
+      pytest .
