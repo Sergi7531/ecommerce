@@ -31,13 +31,41 @@ file: `ecommerce_api` and `db`:
 
     ecommerce_password
 
-## Automated tests:
+## Testing the application:
 
-### Run the automated tests with the following command:
+Tests are ran **automatically on docker build**, as specified in `entrypoint-local.sh` file.
+
+To manually perform the tests, follow one of this two options:
+
+<details>
+<summary>Direct command via terminal</summary>
+
+Run the following command:
+
+    docker-compose -f docker-compose-api.yaml run ecommerce_api pytest --verbose
+
+(RECOMMENDED!) Use the verbose flag to print a detailed output:
+
     docker-compose -f docker-compose-api.yaml run ecommerce_api pytest /code/tests --verbose
 
-### Or use the verbose option for more details about the :
-    docker-compose -f docker-compose-api.yaml run ecommerce_api pytest /code/tests --verbose
+</details>
+
+<details>
+<summary>Pytest from inside the container</summary>
+
+Instead, start a Django-container shell:
+
+    docker exec -ti ecommerce_api_local bash
+
+And execute the tests as specified in the docker compose:
+    
+    pytest
+
+**(RECOMMENDED!)** Use the verbose flag to print a detailed output:
+    
+    pytest --verbose
+
+</details>
 
 --- 
 
