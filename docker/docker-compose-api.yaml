@@ -4,6 +4,7 @@ services:
     build:
       context: ..
       dockerfile: docker/Dockerfile-api-local
+    image: docker-ecommerce_api
     container_name: "ecommerce_api_local"
     ports:
       - "8000:8000"
@@ -12,12 +13,11 @@ services:
       - DB_NAME=ecommerce
       - DB_USER=ecommerce_user
       - DB_PWD=ecommerce_password
+      - DJANGO_SETTINGS_MODULE=settings.local
     volumes:
       - ../api:/code
       - ../resources:/code/resources
     links:
-      - db
-    depends_on:
       - db
     command:
       ../entrypoint-local.sh

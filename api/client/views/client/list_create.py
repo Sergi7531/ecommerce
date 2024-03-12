@@ -26,4 +26,4 @@ class EcommerceClientsViewSet(ListCreateAPIView):
         token = AuthToken.objects.create(ecommerce_client)
         ecommerce_client.auth_token = token[1]
 
-        return Response(self.get_serializer(ecommerce_client).data)
+        return Response(MeSerializer(ecommerce_client).data)

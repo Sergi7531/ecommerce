@@ -8,6 +8,7 @@ from knox.models import AuthToken
 class EcommerceClient(AbstractUser):
     id = models.UUIDField(primary_key=True, default=uuid4, editable=False)
     email = models.EmailField(unique=True)
+    password = models.CharField(max_length=256)
 
     address = models.ForeignKey('Address', on_delete=models.CASCADE, null=True)
 

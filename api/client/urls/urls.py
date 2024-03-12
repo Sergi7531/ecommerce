@@ -7,6 +7,8 @@ from client.views.client.list_create import EcommerceClientsViewSet
 from client.views.client.me import MeView
 from client.views.client.retrieve_update_destroy import EcommerceClientViewSet
 
+app_name='client'
+
 urlpatterns = [
     re_path(r'^clients/$', EcommerceClientsViewSet.as_view(), name="list_create"),
     re_path(r'^client/(?P<client_id>[0-9_a-zA-Z\-]+)/?$', EcommerceClientViewSet.as_view(), name="retrieve_update"),

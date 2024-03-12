@@ -11,4 +11,4 @@ class Address(SoftDeletionModel):
     extra_info = models.CharField(max_length=40)
     zip_code = models.CharField(max_length=10)
     city = models.CharField(max_length=40)
-    country = models.CharField(max_length=30)
+    country = models.CharField(max_length=100)
