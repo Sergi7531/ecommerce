@@ -8,8 +8,4 @@ python3.10 manage.py migrate --noinput
 
 # ^^^^ DEPLOY COMMANDS HERE ^^^^
 
-# VVVV TESTS VVVV
-pytest .
-# ^^^^ END TESTS ^^^^
-
 python3.10 manage.py runserver 0.0.0.0:8000

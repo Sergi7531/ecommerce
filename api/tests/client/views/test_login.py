@@ -22,7 +22,7 @@ class TestLogin:
         """
         Executed once before each test.
         """
-        self.ecommerce_client = EcommerceClientPredictableLoginFactory.create()
+        self.ecommerce_client = EcommerceClientPredictableLoginFactory()
 
     def test_login_ok(self, api_client):
         response = api_client.post(path=self.url, data={"email": 'test123456789@example.com',

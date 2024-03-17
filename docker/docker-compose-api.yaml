@@ -4,7 +4,7 @@ services:
     build:
       context: ..
       dockerfile: docker/Dockerfile-api-local
-    image: docker-ecommerce_api
+    image: docker_ecommerce_api:0.1.0
     container_name: "ecommerce_api_local"
     ports:
       - "8000:8000"
@@ -19,14 +19,18 @@ services:
       - ../resources:/code/resources
     links:
       - db
+    depends_on:
+      - db
     command:
       ../entrypoint-local.sh
+    networks:
+      - services_network
 
   db:
     build:
       context: ..
       dockerfile: docker/Dockerfile-mysql-local
-    container_name: "ecommerce_db"
+    image: db:0.1.0
     volumes:
       - "./docker_mysql/.data/db:/var/lib/mysql"
       - "./docker_mysql/init-scripts:/docker-entrypoint-initdb.d/"
@@ -36,3 +40,32 @@ services:
       MYSQL_PASSWORD: "ecommerce_password"
     ports:
       - "3306:3306"
+    networks:
+      - services_network
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      interval: 10s
+      retries: 5
+      timeout: 5s
+
+
+  test-unit:
+    image: docker_ecommerce_api:0.1.0
+    environment:
+      - DJANGO_SETTINGS_MODULE=settings.local
+      - LC_ALL=en_US.UTF-8
+      - LANG=en_US.UTF-8
+      - LANGUAGE=en_US.UTF-8
+    volumes:
+      - ../api:/code
+      - ../resources:/code/resources
+    networks:
+      - services_network
+    depends_on:
+      db:
+        condition: service_healthy
+    entrypoint: pytest --maxfail=10
+
+networks:
+  services_network:
+    external: true
