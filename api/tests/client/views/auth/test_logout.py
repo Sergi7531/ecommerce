@@ -5,6 +5,7 @@ from rest_framework.reverse import reverse
 from rest_framework.status import HTTP_204_NO_CONTENT, HTTP_401_UNAUTHORIZED
 
 from tests.client.factories.ecommerce_client import EcommerceClientPredictableLoginFactory
+from tests.client.utils import authorized_test
 
 
 @pytest.mark.django_db
@@ -23,21 +24,11 @@ class TestLogin:
         """
         Executed once before each test.
         """
-        self.ecommerce_client = EcommerceClientPredictableLoginFactory.create()
+        self.ecommerce_client = EcommerceClientPredictableLoginFactory()
 
-    def _get_auth_token(self, api_client):
-        response = api_client.post(self._login_url, data={"email": 'test123456789@example.com',
-                                                          "password": 'testing_password123'})
-
-        json_response = json.loads(response.content)
-
-        return json_response["token"]
-
-
+    @authorized_test
     def test_logout_ok(self, api_client):
-        token = self._get_auth_token(api_client)
-
-        response = api_client.post(self.url, headers={'Authorization': f'Token {token}'})
+        response = api_client.post(self.url)
 
         assert response.status_code == HTTP_204_NO_CONTENT
 

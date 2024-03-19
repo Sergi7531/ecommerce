@@ -1,13 +1,13 @@
 #  Base ecommerce API:
 
-This is a bare-bones API oriented for an "ecommerce" that can be in the need of a backend architecture.
+This is a bare-bones API oriented for a certain business type, most especifically, a clothing e-commerce.  
 
-The project is entirely made using the Django framework, more specifically layered with the Django REST package to provide the structure of a typical API.
+The project is entirely made using Django web framework, layered with the Django REST Framework package to provide your typical REST API structure.
 
 The entire application is stored inside the `api` source folder.
 
-The structure that features this project is dockerized. There are 2 containers by default defined in `docker-compose-api.yaml` 
-file: `ecommerce_api` and `db`:  
+The structure that features this project is dockerized. There are 3 containers by default defined in `docker-compose-api.yaml` 
+file: `ecommerce_api`, `db` and `test-unit`, each of them serving one different purpose but interconnected to form the architecture:  
 
 ## Download the project:
 
@@ -15,7 +15,7 @@ file: `ecommerce_api` and `db`:
 
 ## Assuming docker is already installed on your system, the project setup is pretty easy:
 
-### Move inside the directory of the project
+### Move inside the project's base directory
 
     cd ecommerce
 
@@ -24,6 +24,7 @@ file: `ecommerce_api` and `db`:
     docker-compose -f docker/docker-compose-api.yaml up --build
 
 ### Start a database shell:
+<a name="deploy_api_local_cmd"></a>
 
     docker exec -ti ecommerce_db mysql -u ecommerce_user -p
 
@@ -33,39 +34,17 @@ file: `ecommerce_api` and `db`:
 
 ## Testing the application:
 
-Tests are ran **automatically on docker build**, as specified in `entrypoint-local.sh` file.
+Tests are ran inside an **isolated container** "test-unit", as defined in `docker-compose-api-local.yaml` file.
 
 To manually perform the tests, follow one of this two options:
 
-<details>
-<summary>Direct command via terminal</summary>
+- Deploy the API as stated [above](#deploy_api_local_cmd)
 
-Run the following command:
 
-    docker-compose -f docker-compose-api.yaml run ecommerce_api pytest --verbose
+- Or run the isolated tests container:
 
-(RECOMMENDED!) Use the verbose flag to print a detailed output:
-
-    docker-compose -f docker-compose-api.yaml run ecommerce_api pytest /code/tests --verbose
-
-</details>
-
-<details>
-<summary>Pytest from inside the container</summary>
-
-Instead, start a Django-container shell:
-
-    docker exec -ti ecommerce_api_local bash
-
-And execute the tests as specified in the docker compose:
     
-    pytest
-
-**(RECOMMENDED!)** Use the verbose flag to print a detailed output:
-    
-    pytest --verbose
-
-</details>
+    docker-compose -f docker-compose-api.yaml run test-unit
 
 --- 
 

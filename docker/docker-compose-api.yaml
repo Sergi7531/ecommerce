@@ -21,6 +21,7 @@ services:
       - db
     depends_on:
       - db
+      - test-unit
     command:
       ../entrypoint-local.sh
     networks:
@@ -43,11 +44,10 @@ services:
     networks:
       - services_network
     healthcheck:
-      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
-      interval: 10s
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 5s
       retries: 5
       timeout: 5s
-
 
   test-unit:
     image: docker_ecommerce_api:0.1.0
@@ -64,7 +64,7 @@ services:
     depends_on:
       db:
         condition: service_healthy
-    entrypoint: pytest --maxfail=10
+    entrypoint: pytest
 
 networks:
   services_network:
