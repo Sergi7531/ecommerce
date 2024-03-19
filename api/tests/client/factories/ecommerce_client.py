@@ -30,3 +30,10 @@ class EcommerceClientPredictableLoginFactory(EcommerceClientFactory):
     email = 'test123456789@example.com'
     password = factory.PostGenerationMethodCall('set_password', 'testing_password123')
 
+
+class EcommerceClientWithoutAddressFactory(EcommerceClientPredictableLoginFactory):
+    class Meta:
+        model = EcommerceClient
+        skip_postgeneration_save = True
+
+    address = None
