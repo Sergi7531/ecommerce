@@ -8,6 +8,7 @@ from rest_framework.status import HTTP_400_BAD_REQUEST
 from rest_framework.test import APIClient
 
 from tests.client.factories.ecommerce_client import EcommerceClientFactory
+from tests.client.utils import authorized_test
 
 
 @pytest.mark.django_db
@@ -24,7 +25,7 @@ class TestEcommerceClient:
         """
         Executed once before each test.
         """
-        self.ecommerce_client = EcommerceClientFactory()
+        self.ecommerce_client = EcommerceClientFactory.build()
 
     @property
     def _ecommerce_client_creation_data(self) -> dict:
@@ -43,10 +44,10 @@ class TestEcommerceClient:
         assert response.status_code == status.HTTP_201_CREATED
 
     def test_ecommerce_client_create_incomplete_data(self, api_client: APIClient) -> NoReturn:
-        incomplete_address_data = copy.deepcopy(self._ecommerce_client_creation_data)
-        incomplete_address_data.pop('first_name')
+        incomplete_ecommerce_data = copy.deepcopy(self._ecommerce_client_creation_data)
+        incomplete_ecommerce_data.pop('first_name')
 
-        response = api_client.post(self.url, data=self._ecommerce_client_creation_data)
+        response = api_client.post(self.url, data=incomplete_ecommerce_data)
 
         assert response.status_code == HTTP_400_BAD_REQUEST
 

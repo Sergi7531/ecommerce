@@ -1,4 +1,5 @@
 from knox.models import AuthToken
+from rest_framework import status
 from rest_framework.generics import ListCreateAPIView
 from rest_framework.response import Response
 
@@ -26,4 +27,4 @@ class EcommerceClientsViewSet(ListCreateAPIView):
         token = AuthToken.objects.create(ecommerce_client)
         ecommerce_client.auth_token = token[1]
 
-        return Response(MeSerializer(ecommerce_client).data)
+        return Response(MeSerializer(ecommerce_client).data, status=status.HTTP_201_CREATED)
