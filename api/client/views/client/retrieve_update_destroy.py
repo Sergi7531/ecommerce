@@ -28,12 +28,13 @@ class EcommerceClientViewSet(RetrieveUpdateDestroyAPIView):
 
     def update(self, request, *args, **kwargs):
         partial = kwargs.pop('partial', False)
-        instance = self.get_object()
+        client = self.get_object()
 
-        if not instance == request.user:
+        if not client == request.user:
             raise PermissionDenied()
 
-        serializer = self.get_serializer(instance, data=request.data, partial=partial)
+        serializer = self.get_serializer(client, data=request.data, partial=partial,
+                                         context={'user': request.user})
         serializer.is_valid(raise_exception=True)
         self.perform_update(serializer)
 
@@ -47,10 +48,14 @@ class EcommerceClientViewSet(RetrieveUpdateDestroyAPIView):
         # if password and not client.check_password(password):
         #     client.set_password(password)
 
-        return Response(self.output_serializer_class(instance).data, status=status.HTTP_200_OK)
+        return Response(self.output_serializer_class(client).data, status=status.HTTP_200_OK)
 
     def delete(self, request, *args, **kwargs):
         client = self.get_object()
+
+        if not client == request.user:
+            raise PermissionDenied()
+
         EcommerceClient.delete(client)
 
         return Response(self.output_serializer_class(client).data, status=status.HTTP_200_OK)

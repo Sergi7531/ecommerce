@@ -20,7 +20,7 @@ class TestRetrieveUpdate:
         """
         Executed once for the class.
         """
-        cls._reversed_retrieve_update_url = "client:ecommerce_client_retrieve_update"
+        cls._reversed_retrieve_update_url_str = "client:ecommerce_client_retrieve_update"
         cls._login_url = reverse("client:login")
 
     def setup_method(self) -> NoReturn:
@@ -29,9 +29,9 @@ class TestRetrieveUpdate:
         """
         self.ecommerce_client = EcommerceClientPredictableLoginFactory()
 
-    def _client_detail_url(self, client_id: str) -> str:
-        # Used in runtime to dynamically reverse the _reversed_retrieve_update_url
-        return reverse(self._reversed_retrieve_update_url, args=[client_id])
+    def build_retrieve_update_destroy_url(self, client_id: str) -> str:
+        # Dynamically reverse the _reversed_retrieve_update_url
+        return reverse(self._reversed_retrieve_update_url_str, args=[client_id])
 
     @property
     def _update_data(self):
@@ -54,7 +54,7 @@ class TestRetrieveUpdate:
     @authorized_test
     def test_get_public_client_details_ok(self, api_client: APIClient) -> NoReturn:
         random_client = random.choice(EcommerceClient.objects.all())
-        response = api_client.get(self._client_detail_url(random_client.id))
+        response = api_client.get(self.build_retrieve_update_destroy_url(random_client.id))
         json_response = json.loads(response.content)
 
         assert response.status_code == HTTP_200_OK
@@ -63,13 +63,13 @@ class TestRetrieveUpdate:
     def test_get_public_client_details_ko_unauthorized(self, api_client: APIClient) -> NoReturn:
         random_client = random.choice(EcommerceClient.objects.all())
 
-        response = api_client.get(self._client_detail_url(random_client.id))
+        response = api_client.get(self.build_retrieve_update_destroy_url(random_client.id))
 
         assert response.status_code == HTTP_401_UNAUTHORIZED
 
     @authorized_test
     def test_put_update_client_details_ok(self, api_client: APIClient) -> NoReturn:
-        response = api_client.put(self._client_detail_url(self.ecommerce_client.id),
+        response = api_client.put(self.build_retrieve_update_destroy_url(self.ecommerce_client.id),
                                   data=self._update_data, format="json")
         json_response = json.loads(response.content)
 
@@ -78,7 +78,7 @@ class TestRetrieveUpdate:
         assert json_response["username"] == "New_username"
 
     def test_put_update_client_details_ko_unauthorized(self, api_client: APIClient) -> NoReturn:
-        response = api_client.put(self._client_detail_url(self.ecommerce_client.id),
+        response = api_client.put(self.build_retrieve_update_destroy_url(self.ecommerce_client.id),
                                   data=self._update_data, format="json")
 
         assert response.status_code == HTTP_401_UNAUTHORIZED
@@ -87,7 +87,26 @@ class TestRetrieveUpdate:
     def test_put_update_client_details_ko_invalid_token_for_provided_uuid(self, api_client: APIClient) -> NoReturn:
         new_random_client = EcommerceClientFactory()
 
-        response = api_client.put(self._client_detail_url(new_random_client.id),
-                                  data={"username": "This_will_not_work"})
+        response = api_client.put(self.build_retrieve_update_destroy_url(new_random_client.id),
+                                  data=self._update_data, format="json")
+
+        assert response.status_code == HTTP_403_FORBIDDEN
+
+    @authorized_test
+    def test_delete_client_ok(self, api_client: APIClient) -> NoReturn:
+        response = api_client.delete(self.build_retrieve_update_destroy_url(self.ecommerce_client.id))
+
+        assert response.status_code == HTTP_200_OK
+
+    def test_delete_client_ko_unauthorized(self, api_client: APIClient) -> NoReturn:
+        response = api_client.delete(self.build_retrieve_update_destroy_url(self.ecommerce_client.id))
+
+        assert response.status_code == HTTP_401_UNAUTHORIZED
+
+    @authorized_test
+    def test_delete_client_ko_invalid_token_for_provided_uuid(self, api_client: APIClient) -> NoReturn:
+        new_random_client = EcommerceClientFactory()
+
+        response = api_client.delete(self.build_retrieve_update_destroy_url(new_random_client.id))
 
         assert response.status_code == HTTP_403_FORBIDDEN
