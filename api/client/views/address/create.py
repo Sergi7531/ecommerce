@@ -5,7 +5,7 @@ from rest_framework.generics import CreateAPIView, get_object_or_404
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
-from client.models import EcommerceClient
+from client.models.ecommerce_client import EcommerceClient
 from client.serializers.address import AddressSerializer
 
 

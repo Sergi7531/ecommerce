@@ -2,7 +2,7 @@ from rest_framework.exceptions import ValidationError
 from rest_framework.fields import IntegerField, CharField, FloatField
 from rest_framework.serializers import ModelSerializer, Serializer
 
-from selling.models import Product
+from selling.models.product import Product
 from selling.models.product_image import ProductImage
 from selling.models.sizing import Sizing
 from selling.serializers.product_image import ProductImageSerializer

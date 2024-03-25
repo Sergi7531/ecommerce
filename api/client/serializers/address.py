@@ -1,7 +1,7 @@
 from rest_framework.fields import CharField
 from rest_framework.serializers import ModelSerializer
 
-from client.models import Address
+from client.models.address import Address
 
 
 class AddressSerializer(ModelSerializer):

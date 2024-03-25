@@ -4,7 +4,7 @@ from rest_framework.generics import ListCreateAPIView
 from rest_framework.response import Response
 
 from common.views import HTTP_GET, HTTP_POST
-from selling.models import Product
+from selling.models.product import Product
 from selling.serializers.product import ProductsSerializer, ProductsQueryParamsSerializer, \
     ProductSerializer, ProductCreateUpdateSerializer
 

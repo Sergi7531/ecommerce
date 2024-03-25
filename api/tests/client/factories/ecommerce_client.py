@@ -1,13 +1,13 @@
 from uuid import uuid4
 
 import factory
-
 from factory.django import DjangoModelFactory
 
-from client.models import EcommerceClient
+from client.models.ecommerce_client import EcommerceClient
 from tests.client.factories.address import AddressFactory
 
 factory.Faker._DEFAULT_LOCALE = 'es_ES'
+
 
 class EcommerceClientFactory(DjangoModelFactory):
     class Meta:

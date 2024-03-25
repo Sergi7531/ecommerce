@@ -4,6 +4,9 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 from knox.models import AuthToken
 
+from client.models.address import Address
+from selling.models.shopping_cart import ShoppingCart
+
 
 class EcommerceClient(AbstractUser):
     id = models.UUIDField(primary_key=True, default=uuid4, editable=False)
@@ -12,7 +15,7 @@ class EcommerceClient(AbstractUser):
     email = models.EmailField(unique=True, null=False, blank=False)
     password = models.CharField(max_length=256)
 
-    address = models.ForeignKey('Address', on_delete=models.CASCADE, null=True)
+    address = models.ForeignKey(Address, on_delete=models.CASCADE, null=True)
 
     @property
     def full_name(self):
@@ -34,7 +37,6 @@ class EcommerceClient(AbstractUser):
 
     @property
     def shopping_cart(self):
-        from selling.models.shopping_cart import ShoppingCart
         shopping_cart, _ = ShoppingCart.objects.get_or_create(user=self)
 
         return shopping_cart

@@ -1,7 +1,7 @@
 from rest_framework.fields import CharField
 from rest_framework.serializers import ModelSerializer
 
-from selling.models import ShippingOption
+from selling.models.shipping_option import ShippingOption
 
 
 class ShippingOptionSerializer(ModelSerializer):

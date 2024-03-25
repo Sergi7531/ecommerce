@@ -11,7 +11,7 @@ app_name='client'
 
 urlpatterns = [
     re_path(r'^clients/$', EcommerceClientsViewSet.as_view(), name="ecommerce_client_list_create"),
-    re_path(r'^client/(?P<client_id>[0-9_a-zA-Z\-]+)/?$', EcommerceClientViewSet.as_view(), name="retrieve_update"),
+    re_path(r'^client/(?P<client_id>[0-9_a-zA-Z\-]+)/?$', EcommerceClientViewSet.as_view(), name="ecommerce_client_retrieve_update"),
     re_path(r'^clients/address/?$', AddressCreationView.as_view(), name="address_creation"),
     re_path(r'^me/$', MeView.as_view(), name="retrieve_me"),
     re_path(r'^login/$', LoginView.as_view(), name="login"),

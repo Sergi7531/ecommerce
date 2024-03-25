@@ -64,7 +64,7 @@ services:
     depends_on:
       db:
         condition: service_healthy
-    entrypoint: pytest
+    entrypoint: pytest --cov=. --cov-report term-missing
 
 networks:
   services_network:

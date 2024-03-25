@@ -3,7 +3,7 @@ from rest_framework.generics import ListCreateAPIView
 from rest_framework.response import Response
 
 from common.views import HTTP_LIST_METHODS, HTTP_CREATE_METHODS
-from selling.models import Tag
+from selling.models.tag import Tag
 from selling.serializers.tags import TagsSerializer, TagCreationSerializer, TagSerializer
 
 

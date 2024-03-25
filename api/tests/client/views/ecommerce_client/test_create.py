@@ -1,4 +1,5 @@
 import copy
+import json
 from typing import NoReturn, Literal
 
 import factory
@@ -65,5 +66,7 @@ class TestEcommerceClientCreate:
         ecommerce_data_copy[field_name] = factory.Faker(field_name)
 
         response = api_client.post(self.url, data=self._ecommerce_client_creation_data)
+        json_response = json.loads(response.content)
 
         assert response.status_code == status.HTTP_400_BAD_REQUEST
+        assert any(map(lambda error_msg: f"{field_name} already exists" in error_msg, json_response.get(field_name, "")))
