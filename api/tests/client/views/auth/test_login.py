@@ -32,7 +32,7 @@ class TestLogin:
 
         assert response.status_code == HTTP_200_OK
         assert json_response['token'] is not None
-        assert UUID(json_response['client']['id']) == self.ecommerce_client.id
+        assert json_response['client']['id'] == str(self.ecommerce_client.id)
 
     def test_login_wrong_password(self, api_client):
         response = api_client.post(path=self.url,

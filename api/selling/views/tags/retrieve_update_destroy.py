@@ -2,7 +2,7 @@ from rest_framework import status
 from rest_framework.generics import RetrieveUpdateDestroyAPIView, get_object_or_404
 from rest_framework.response import Response
 
-from selling.models import Tag
+from selling.models.tag import Tag
 from selling.serializers.tags import TagSerializer, TagCreationSerializer
 
 

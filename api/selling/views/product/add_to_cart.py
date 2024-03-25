@@ -4,8 +4,7 @@ from rest_framework.generics import CreateAPIView, get_object_or_404
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
-from selling.models import Product
-from selling.models.shopping_cart_product import ShoppingCartProduct
+from selling.models.product import Product
 from selling.models.sizing import Sizing
 from selling.serializers.shopping_cart import AddToCartSerializer, ShoppingCartSerializer
 
@@ -24,7 +23,8 @@ class AddToCartView(CreateAPIView):
         cart = user.shopping_cart
 
         product = get_object_or_404(Product, id=serializer.validated_data['product_id'])
-        sizing = get_object_or_404(Sizing.objects.filter(product_id=product.id), id=serializer.validated_data['sizing_id'])
+        sizing = get_object_or_404(Sizing.objects.filter(product_id=product.id),
+                                   id=serializer.validated_data['sizing_id'])
 
         cart.add_product_to_cart(product, sizing, serializer.validated_data['amount'])
 

@@ -1,12 +1,11 @@
 from rest_framework.exceptions import ValidationError
-from rest_framework.fields import SerializerMethodField, CharField
-from rest_framework.generics import get_object_or_404
+from rest_framework.fields import CharField
 from rest_framework.serializers import ModelSerializer
 
-from client.models import Address
 from client.serializers.address import AddressSerializer
 from client.serializers.client import EcommerceClientSerializer
-from selling.models import Order, ShippingOption, ShoppingCart, PaymentMethod
+from selling.models.order import Order
+from selling.models.shipping_option import ShippingOption
 from selling.serializers.payment_method import PaymentMethodSerializer
 from selling.serializers.shipping_option import ShippingOptionSerializer
 from selling.serializers.shopping_cart import ShoppingCartSerializer

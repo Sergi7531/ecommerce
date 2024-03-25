@@ -17,7 +17,6 @@ class TestLogin:
         Executed once for the class.
         """
         cls.url = reverse("client:knox_logout")
-
         cls._login_url = reverse("client:login")
 
     def setup_method(self):

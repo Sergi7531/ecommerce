@@ -2,8 +2,7 @@ from knox.auth import TokenAuthentication
 from rest_framework.generics import RetrieveAPIView, get_object_or_404
 from rest_framework.permissions import IsAuthenticated
 
-from client.models import EcommerceClient
-from selling.models import ShoppingCart
+from selling.models.shopping_cart import ShoppingCart
 from selling.serializers.shopping_cart import ShoppingCartSerializer
 
 

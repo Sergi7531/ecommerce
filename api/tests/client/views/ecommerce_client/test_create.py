@@ -1,6 +1,8 @@
 import copy
-from typing import NoReturn
+import json
+from typing import NoReturn, Literal
 
+import factory
 import pytest
 from rest_framework import status
 from rest_framework.reverse import reverse
@@ -8,11 +10,10 @@ from rest_framework.status import HTTP_400_BAD_REQUEST
 from rest_framework.test import APIClient
 
 from tests.client.factories.ecommerce_client import EcommerceClientFactory
-from tests.client.utils import authorized_test
 
 
 @pytest.mark.django_db
-class TestEcommerceClient:
+class TestEcommerceClientCreate:
 
     @classmethod
     def setup_class(cls) -> NoReturn:
@@ -51,7 +52,21 @@ class TestEcommerceClient:
 
         assert response.status_code == HTTP_400_BAD_REQUEST
 
+    def test_ecommerce_client_create_username_in_use(self, api_client: APIClient) -> NoReturn:
+        self._test_ecommerce_client_creation_existing_field(api_client, 'username')
+
     def test_ecommerce_client_create_email_in_use(self, api_client: APIClient) -> NoReturn:
+        self._test_ecommerce_client_creation_existing_field(api_client, 'email')
+
+    def _test_ecommerce_client_creation_existing_field(self, api_client: APIClient, field_name: Literal['username', 'email']) -> NoReturn:
+        ecommerce_data_copy = copy.deepcopy(self._ecommerce_client_creation_data)
+
+        _ = api_client.post(self.url, data=ecommerce_data_copy)
+
+        ecommerce_data_copy[field_name] = factory.Faker(field_name)
+
         response = api_client.post(self.url, data=self._ecommerce_client_creation_data)
+        json_response = json.loads(response.content)
 
         assert response.status_code == status.HTTP_400_BAD_REQUEST
+        assert any(map(lambda error_msg: f"{field_name} already exists" in error_msg, json_response.get(field_name, "")))

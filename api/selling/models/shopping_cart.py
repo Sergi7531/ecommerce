@@ -1,19 +1,16 @@
 from datetime import timedelta
 
 from django.db import models
-from django.utils import timezone
 
-from client.models.ecommerce_client import EcommerceClient
 from common.models import SoftDeletionModel
 from selling.common.utils import SUBTOTAL_DECIMALS
 from selling.managers.shopping_cart import ShoppingCartManager
-from selling.models import Product
 from selling.models.shopping_cart_product import ShoppingCartProduct
 
 
 class ShoppingCart(SoftDeletionModel):
     timestamp = models.DateTimeField(auto_now_add=True)
-    user = models.ForeignKey(EcommerceClient, on_delete=models.CASCADE)
+    user = models.ForeignKey('client.EcommerceClient', on_delete=models.CASCADE)
     products = models.ManyToManyField('ShoppingCartProduct', related_name='products_in_cart')
     # discounts = models.ManyToManyField(Discount, related_name='discounts')
 

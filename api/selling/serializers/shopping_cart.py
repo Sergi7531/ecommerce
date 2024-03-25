@@ -4,7 +4,7 @@ from rest_framework.generics import get_object_or_404
 from rest_framework.serializers import ModelSerializer, Serializer
 
 from selling.common.fields import ShoppingCartPriceField, ShoppingCartCharField
-from selling.models import Product
+from selling.models.product import Product
 from selling.models.shopping_cart import ShoppingCart
 from selling.models.shopping_cart_product import ShoppingCartProduct
 from selling.models.sizing import Sizing
