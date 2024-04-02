@@ -13,7 +13,7 @@ from tests.client.utils import authorized_test
 
 
 @pytest.mark.django_db
-class TestRetrieveUpdate:
+class TestRetrieveUpdateDestroyEcommerceClient:
 
     @classmethod
     def setup_class(cls) -> NoReturn:

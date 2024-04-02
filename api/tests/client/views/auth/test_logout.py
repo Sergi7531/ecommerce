@@ -9,7 +9,7 @@ from tests.client.utils import authorized_test
 
 
 @pytest.mark.django_db
-class TestLogin:
+class TestLogout:
 
     @classmethod
     def setup_class(cls):
@@ -31,7 +31,7 @@ class TestLogin:
 
         assert response.status_code == HTTP_204_NO_CONTENT
 
-    def test_logout_no_token(self, api_client):
+    def test_logout_ko_no_token(self, api_client):
         response = api_client.post(self.url, headers={})
 
         assert response.status_code == HTTP_401_UNAUTHORIZED

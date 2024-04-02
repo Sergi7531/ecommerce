@@ -5,14 +5,14 @@ from factory.django import DjangoModelFactory
 
 from selling.models import Sizing, Product
 from selling.models.shopping_cart_product import ShoppingCartProduct
-from tests.selling.factories.product_factory import PredictableProductFactory
+from tests.selling.factories.product_factory import ProductFactory
 
 
 class ShoppingCartProductBuildableFactory(DjangoModelFactory):
     class Meta:
         model = ShoppingCartProduct
 
-    product = factory.SubFactory(PredictableProductFactory)
+    product = factory.SubFactory(ProductFactory)
     sizing = factory.Iterator(Sizing.objects.all())
 
     @factory.lazy_attribute

@@ -13,7 +13,7 @@ from tests.client.factories.ecommerce_client import EcommerceClientFactory
 
 
 @pytest.mark.django_db
-class TestEcommerceClientCreate:
+class TestCreateEcommerceClient:
 
     @classmethod
     def setup_class(cls) -> NoReturn:
